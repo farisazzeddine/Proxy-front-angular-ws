@@ -1,0 +1,37 @@
+<div class="container text-center mt-5">
+<h1 class="text-uppercase"> portail client </h1>
+        <li *ngFor="let Client of clients" class="collection-item">
+                {{Client.id}}
+                <span>
+                {{Client.nom}}
+                </span>
+                <span>
+                {{Client.prenom}}
+                </span>
+                <br/> <span>
+                Adress:{{Client.adresse}}
+                </span>
+                <br/> <span>
+                     CIN°: <em class="text-uppercase">{{Client.cin}}</em>
+                </span>
+                <br/><span>
+                       ouverture de compte à: {{Client.ville}}
+                </span>
+                <br/><span >         
+                {{Client.compteCourant}}
+                </span>
+                 <br/><span >         
+                {{Client.compteEpargne}}
+                </span>
+               <br/> <span >         
+                  ce compte créer dans la date : {{Client.created_at}}
+                </span>
+                <br/> <span >         
+                  RIB: {{Client.compte.numCompte}}
+                </span>
+                <br/> <span >         
+                  Solde: {{Client.compte.solde}} <em>DH</em>
+                </span>
+                
+         </li> 
+</div>
