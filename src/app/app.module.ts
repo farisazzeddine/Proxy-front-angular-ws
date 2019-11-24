@@ -15,6 +15,8 @@ import { ClientService } from './service/client.service';
 import { OperationService } from './service/operation.service';
 import { OperationsComponent } from './operations/operations.component';
 import { GerantComponent } from './gerant/gerant.component';
+import { GerantService } from './service/gerant.service';
+
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { GerantComponent } from './gerant/gerant.component';
     RoutesRoutingModule
     
   ],
-  providers: [ClientService,OperationService],
+  providers: [ClientService,OperationService,GerantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

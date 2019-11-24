@@ -1,37 +1,134 @@
-<div class="container text-center mt-5">
-<h1 class="text-uppercase"> portail client </h1>
-        <li *ngFor="let Client of clients" class="collection-item">
-                {{Client.id}}
-                <span>
+<div class="container  mt-5">
+  <h1 class="text-uppercase text-center"> portail client </h1>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <!-- Partie d'ajoute les clients compte de type compte courant 
+        ou compte epargne -->
+        <div class="col-md-12 mx-auto my-5">
+          <section class="form-elegant">
+            <mdb-card>
+              <mdb-card-body class="mx-4">
+                <!--Header-->
+                <div class="text-center">
+                  <h3 class="dark-grey-text mb-5">
+                    <strong>Créer un(e) client(e):</strong>
+                  </h3>
+                </div>
+                <form>
+                    <div class="md-form pb-3">
+                        <select id="agence" formControlName="agence"  class="browser-default custom-select ">
+                          <option selected>Choisi L'agence</option>
+                          <option *ngFor="let agence of agences" value={{agence.id}}>{{agence.nomAgence}}</option>
+                        </select>
+                      </div>
+                      <div class="row">
+                        <div class="md-form col-md-6">
+                          <input type="text" id="nom" class="form-control" formControlName="nom" mdbInput>
+                          <label for="nom">Nom</label>
+                        </div>
+                        <div class="md-form col-md-6">
+                          <input type="text" id="prenom" class="form-control" formControlName="prenom" mdbInput>
+                          <label for="prenom">Prénom</label>
+                        </div>
+                      </div>
+
+                  <div class="md-form pb-3">
+                    <input type="text" id="adresse" formControlName="adresse" class="form-control" mdbInput>
+                    <label for="adresse">L'adresse</label>
+                  </div>
+                  <div class="row pb-3">
+                    <div class="md-form col-md-6">
+                      <input type="text" id="cin" formControlName="cin" class="form-control" mdbInput>
+                      <label for="cin">Numero de CIN°</label>
+                    </div>
+                    <div class="md-form col-md-6">
+                      <input type="number" id="codePostal" formControlName="codePostal" class="form-control" mdbInput>
+                      <label for="codePostal">Code Postal</label>
+                    </div>
+                  </div>
+                  <div class="md-form pb-3">
+                    <input type="text" id="ville" formControlName="ville" class="form-control" mdbInput>
+                    <label for="ville">Ville</label>
+                  </div>
+                  <div class="row pb-3">
+                    <div class="md-form col-md-6">
+                      <select class="browser-default custom-select">
+                        <option selected>Choisi le Type de compte</option>
+                        <option value="1">Compte Courant</option>
+                        <option value="1">Compte Epargne</option>
+                      </select>
+                    </div>
+                    <div class="md-form col-md-6">
+                        <select formControlName="cartebancaire" class="browser-default custom-select">
+                          <option selected>Carte Bancaire</option>
+                          <option value="0">Sans</option>
+                          <option value="1">Avec</option>
+                        </select>
+                      </div>
+
+                  </div>
+                  <div class="md-form pb-3">
+                    <input type="number" id="solde" formControlName="solde" class="form-control" mdbInput>
+                    <label for="solde">Solde de ouverture</label>
+                  </div>
+                </form>
+                <!--Body-->
+                <div class="text-center mb-3">
+                  <button type="button" mdbBtn gradient="blue" block="true" rounded="true"
+                    class="z-depth-1a waves-light" mdbWavesEffect>Ajouter</button>
+                </div>
+              </mdb-card-body>
+              <!--Footer-->
+              <div class="modal-footer mx-5 pt-3 mb-1"></div>
+            </mdb-card>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- la fin Partie d'ajoute les clients compte de type compte courant 
+        ou compte epargne avec carte guichet -->
+    <section class="form-elegant pt-5">
+      <mdb-card>
+        <mdb-card-body class="mx-4">
+          <div class="col-md-12">
+            <li *ngFor="let Client of clients" class="collection-item">
+              {{Client.id}}
+              <span>
                 {{Client.nom}}
-                </span>
-                <span>
+              </span>
+              <span>
                 {{Client.prenom}}
-                </span>
-                <br/> <span>
+              </span>
+              <br /> <span>
                 Adress:{{Client.adresse}}
-                </span>
-                <br/> <span>
-                     CIN°: <em class="text-uppercase">{{Client.cin}}</em>
-                </span>
-                <br/><span>
-                       ouverture de compte à: {{Client.ville}}
-                </span>
-                <br/><span >         
+              </span>
+              <br /> <span>
+                CIN°: <em class="text-uppercase">{{Client.cin}}</em>
+              </span>
+              <br /><span>
+                ouverture de compte à: {{Client.ville}}
+              </span>
+              <br /><span>
                 {{Client.compteCourant}}
-                </span>
-                 <br/><span >         
+              </span>
+              <br /><span>
                 {{Client.compteEpargne}}
-                </span>
-               <br/> <span >         
-                  ce compte créer dans la date : {{Client.created_at}}
-                </span>
-                <br/> <span >         
-                  RIB: {{Client.compte.numCompte}}
-                </span>
-                <br/> <span >         
-                  Solde: {{Client.compte.solde}} <em>DH</em>
-                </span>
-                
-         </li> 
+              </span>
+              <br /> <span>
+                ce compte créer dans la date : {{Client.created_at}}
+              </span>
+              <br /> <span>
+                RIB: {{Client.compte.numCompte}}
+              </span>
+              <br /> <span>
+                Solde: {{Client.compte.solde}} <em>DH</em>
+              </span>
+              <div class="modal-footer mx-5 pt-3 mb-1"></div>
+            </li>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </section>
+  </div>
 </div>

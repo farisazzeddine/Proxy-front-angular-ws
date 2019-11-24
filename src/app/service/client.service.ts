@@ -11,4 +11,7 @@ export class ClientService {
   findAll(){
     return this.http.get<Client[]>("http://127.0.0.1:8000/api/client/index");
   }
+  findAgenceForclient(){
+    return this.http.get<Client[]>("http://127.0.0.1:8000/api/agence/index");
+  }
 }
