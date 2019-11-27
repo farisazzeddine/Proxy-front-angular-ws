@@ -16,6 +16,10 @@ import { OperationService } from './service/operation.service';
 import { OperationsComponent } from './operations/operations.component';
 import { GerantComponent } from './gerant/gerant.component';
 import { GerantService } from './service/gerant.service';
+import { AgenceService } from './service/agence.service';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 
@@ -29,16 +33,19 @@ import { GerantService } from './service/gerant.service';
     AdminComponent,
     PageNotFoundComponent,
     OperationsComponent,
-    GerantComponent
+    GerantComponent,
+  
+    
   ],
   imports: [
     BrowserModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
-    RoutesRoutingModule
+    RoutesRoutingModule,
+    FormsModule
     
   ],
-  providers: [ClientService,OperationService,GerantService],
+  providers: [ClientService,OperationService,GerantService, AgenceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

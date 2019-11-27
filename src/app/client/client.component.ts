@@ -3,6 +3,8 @@ import {Client} from 'src/app/models/client';
 import { ClientService } from 'src/app/service/client.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { AgenceService } from '../service/agence.service';
+
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -11,8 +13,15 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class ClientComponent implements OnInit {
   clients: Client[] = [];
   agences: Client[] = [];
+Newclient={
+    id:0,
+    agence:'1', nom:'', prenom:'', adresse:'', cin:'', codePostal:'',
+    ville:'', telephone:'', compteEpargne:'0', compteCourant:'',
+    solde:'', cartebancaire:'', typeCarte:''
 
-  constructor(private clientService : ClientService) { }
+  };
+
+  constructor(private clientService : ClientService, private agenceService:AgenceService) { }
 
   ngOnInit() {
     this.getClient();
@@ -23,8 +32,18 @@ export class ClientComponent implements OnInit {
     .subscribe(clients =>this.clients = clients );
     
   }
+  createClient(){
+    
+
+    this.clientService.createClient().subscribe(
+      Response=>{
+        console.log(Response);
+        
+      }
+    );
+  }
   getAgence(){
-    this.clientService. findAgenceForclient()
+    this.agenceService.getAll()
     .subscribe(agences =>this.agences = agences );
    
   }

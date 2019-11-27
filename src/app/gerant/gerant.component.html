@@ -1,39 +1,67 @@
 <div class="container text-center mt-5">
-  <h1 class="text-uppercase"> portail Gerant Agence </h1>
+  <h1 class="text-uppercase"> portail Gerant et Agence </h1>
 </div>
-<div class="row mt-5">
+<div class="row mt-2 container">
+
 
   <div class="col-md-6">
+    <!-- debut de formulaire -->
+    <form class="col-md-10 ml-2 text-center">
+      <h3>Ajouter une agence</h3>
+      <hr>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="nomAgence">Nom d'agence</span>
+        </div>
+        <input [(ngModel)]="newAgence.nomAgence" name="nomAgence" id="nomAgence" type="text" class="form-control" 
+        placeholder="...." aria-label="name"
+          aria-describedby="basic-addon1" required>
+      </div>
 
-    <ul *ngFor="let setting of Data">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span id="adresse" class="input-group-text">Adresse d'agence</span>
+        </div>
+        <textarea [(ngModel)]="newAgence.adresseAgence" name="adresseAgence" id="adresseAgence"
+         class="form-control" aria-label="With textarea" required></textarea>
+      </div>
+      <button mdbBtn (click)="createAgence()" *ngIf="editAg"  size="sm" type="button" gradient="aqua" rounded="true" mdbWavesEffect >Ajoute <mdb-icon fas
+          icon="plus-circle"></mdb-icon></button>
+      <button mdbBtn (click)="updateAgence()" *ngIf="!editAg"  size="sm" type="button" gradient="peach" rounded="true" mdbWavesEffect >Modifier <mdb-icon fas icon="redo"></mdb-icon></button>
+    </form>
+    <!-- {{newAgence | json}} -->
+    <!-- fin de formulaire -->
+    <br>
+    <hr>
+    <!-- affichage des elemnts de formulaire et  -->
+    <ul class="mt-2" *ngFor="let agence of Agences">
       <li class="collection-item">
-        <span>
-          Agence: {{setting.id}}
-        </span>
+        <p class="font-weight-bold">
+          Agence:
+        </p>
+        <span class="font-italic text-uppercase">{{agence.nomAgence}}</span>
       </li>
+      <br />
+      <li>
+        <p class="font-weight-bold">L'adresse d'agence:</p>
+        <span class="font-italic">{{agence.adresseAgence}}</span>
+      </li>
+      <br />
+      <li>
+        <p class="font-weight-bold">L'agence créer dans la :</p>
+        <span class="font-italic"> {{agence.created_at}}</span>
+      </li>
+
+      <div class="text-right">
+        <button mdbBtn (click)="editAgence(agence)" size="sm" type="button sm" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+        <button mdbBtn (click)="deleteAgence(agence)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+      </div>
+      <hr>
     </ul>
 
   </div>
 
   <div class="col-md-6">
-   <ul *ngFor="let agence of Agences">
-      <li class="collection-item">
-        <span>
-          Agence: {{agence.nomAgence}}
-        </span>
-      </li>
-      <br />
-      <li>
-        <span>
-          L'adresse d'agence: {{agence.adresseAgence}}
-        </span>
-      </li>
-      <br />
-      <li>
-        <span>
-          L'agence créer dans la : {{agence.created_at}}
-        </span>
-      </li>
-    </ul>
+
   </div>
 </div>
