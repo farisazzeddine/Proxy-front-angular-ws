@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GerantService } from '../service/gerant.service';
 import { Setting } from '../models/setting';
 import { AgenceService } from '../service/agence.service';
+import { Agence } from '../models/agence';
 
 
 @Component({
@@ -10,10 +11,25 @@ import { AgenceService } from '../service/agence.service';
   styleUrls: ['./gerant.component.scss']
 })
 export class GerantComponent implements OnInit {
- settings:Setting[]=[];
- Agences:Setting[]=[];
+ Settings:Setting[]=[];
+ Agences:Agence[]=[];
  editAg=true;
- newAgence={id:0, nomAgence:'',adresseAgence:''}
+ newAgence={id:0, nomAgence:'',adresseAgence:''};
+ newSetting={
+   id:0,
+  nomAgence:'',
+  commissionVirement:'',
+  commissionRetrait:'',
+  commissionRetraitCheque:'',
+  commissionVersement:'',
+  fraisOuvertureCompte:'',
+  fraisDotation:'',
+  choixChangementCrtGuichet:'',
+  DemandeCheque:'',
+  TransferSldEtranger:'',
+  NbrMxconseillersParclient:'',
+  nbrMxconseillers:''
+ };
 
   constructor(private gerantService : GerantService , private agenceService: AgenceService) { }
 
@@ -22,14 +38,39 @@ export class GerantComponent implements OnInit {
     this.getAllAgence();
   }
   getParametreAg(){
-     this.gerantService.findAllParametres()
-     .subscribe(Data =>this.settings=Data);
-     
+     this.gerantService.getAll()
+     .subscribe(Settings =>this.Settings=Settings);  
   }
+  createParametreAg(){
+this.gerantService.create(this.newSetting).subscribe(()=>{
+this.newSetting={
+  id:0,
+ nomAgence:'',
+ commissionVirement:'',
+ commissionRetrait:'',
+ commissionRetraitCheque:'',
+ commissionVersement:'',
+ fraisOuvertureCompte:'',
+ fraisDotation:'',
+ choixChangementCrtGuichet:'',
+ DemandeCheque:'',
+ TransferSldEtranger:'',
+ NbrMxconseillersParclient:'',
+ nbrMxconseillers:''
+};  
+  this.getParametreAg();
+  console.log(true);
+})
+
+  }
+
+
+
   // partie Agence ajoute et supprime et modification
   getAllAgence(){
     this.agenceService.getAll().subscribe(Agences =>this.Agences=Agences);
   }
+
   createAgence() {
   this.agenceService.create(this.newAgence).subscribe(() =>{
     this.newAgence={id:0, nomAgence:'',adresseAgence:''};

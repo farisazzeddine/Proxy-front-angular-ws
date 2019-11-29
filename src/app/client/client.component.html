@@ -1,5 +1,6 @@
 <div class="container  mt-5">
-  <h1 class="text-uppercase text-center"> portail client </h1>
+  <h1 class="text-uppercase font-weight-bold text-center"> portail client </h1>
+  <hr>
   <div class="row">
     <div class="col-md-6">
       <div class="row">
@@ -18,14 +19,15 @@
                 <form>
                     <div class="md-form pb-3">
                         <select [(ngModel)]="Newclient.agence" id="agence" name="agence"  class="browser-default custom-select ">
-                          <option selected>Choisi L'agence</option>
+                            <option value="" disabled>Choisi L'agence</option>
+                          <option selected></option>
                           <option *ngFor="let agence of agences" value={{agence.id}}>{{agence.nomAgence}}</option>
                         </select>
                       </div>
                       <div class="row">
                         <div class="md-form col-md-6">
-                          <input [(ngModel)]="Newclient.nom" type="text" id="nom" class="form-control" name="nom" mdbInput>
-                          <label for="nom">Nom</label>
+                          <input [(ngModel)]="Newclient.name" type="text" id="name" class="form-control" name="name" mdbInput>
+                          <label for="name">Nom</label>
                         </div>
                         <div class="md-form col-md-6">
                           <input [(ngModel)]="Newclient.prenom" type="text" id="prenom" class="form-control" name="prenom" mdbInput>
@@ -61,15 +63,17 @@
                   <div class="row pb-3">
 
                     <div class="md-form col-md-6">
-                      <select [(ngModel)]="Newclient.compteCourant" id="compteCourant" name="compteCourant" class="browser-default custom-select">
-                        <option  selected>Choisi le Type de compte</option>
+                      <select class="browser-default custom-select" [(ngModel)]="Newclient.compteCourant" id="compteCourant" name="compteCourant" >
+                          <option value="" disabled>Choisi le Type de compte</option>
+                        <option value=" " disabled selected ></option>
                         <option value="1">Compte Courant</option>
                         <option value="1">Compte Epargne</option>
                       </select>
                     </div>
                     <div class="md-form col-md-6">
                         <select [(ngModel)]="Newclient.cartebancaire" id="cartebancaire" name="cartebancaire" class="browser-default custom-select">
-                          <option selected>Carte Bancaire</option>
+                          <option value="" disabled>Carte Bancaire</option>
+                          <option value=" " disabled selected ></option>
                           <option value="0">Sans</option>
                           <option value="1">Avec</option>
                         </select>
@@ -87,7 +91,8 @@
                       </div>
                       <div class="md-form col-md-6">
                           <select [(ngModel)]="Newclient.typeCarte" id="typeCarte" name="typeCarte" class="browser-default custom-select">
-                            <option selected>Type de carte bancaire</option>
+                            <option value="" disabled>Type de carte bancaire</option>
+                            <option value=" " disabled selected ></option>
                             <option value="MasterCard">Master Card</option>
                             <option value="Visa">Visa</option>
                           </select>
@@ -151,7 +156,14 @@
               <br /> <span>
                 Solde: {{Client.compte.solde}} <em>DH</em>
               </span>
-              <div class="modal-footer mx-5 pt-3 mb-1"></div>
+              <hr>
+              <div class="text-right">
+                  <button mdbBtn (click)="editClient(Client)" size="sm" type="button" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+                  <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                  <button mdbBtn (click)="showClient(Client)"  size="sm" type="button" color="unique" mdbWavesEffect><mdb-icon fas icon="eye"></mdb-icon></button>
+                  
+              </div>
+              <hr>
             </li>
           </div>
         </mdb-card-body>

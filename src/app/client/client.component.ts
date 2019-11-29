@@ -15,8 +15,8 @@ export class ClientComponent implements OnInit {
   agences: Client[] = [];
 Newclient={
     id:0,
-    agence:'1', nom:'', prenom:'', adresse:'', cin:'', codePostal:'',
-    ville:'', telephone:'', compteEpargne:'0', compteCourant:'',
+    agence:'', name:'', prenom:'', adresse:'', cin:'', codePostal:'',
+    ville:'', telephone:'', compteEpargne:'', compteCourant:'',
     solde:'', cartebancaire:'', typeCarte:''
 
   };
@@ -27,25 +27,24 @@ Newclient={
     this.getClient();
     this.  getAgence();
   }
-  getClient(){
-    this.clientService.findAll()
-    .subscribe(clients =>this.clients = clients );
-    
-  }
-  createClient(){
-    
-
-    this.clientService.createClient().subscribe(
-      Response=>{
-        console.log(Response);
-        
-      }
-    );
-  }
   getAgence(){
     this.agenceService.getAll()
     .subscribe(agences =>this.agences = agences );
    
+  }
+  getClient(){
+    this.clientService.getAll()
+    .subscribe(clients =>this.clients = clients );
+    
+  }
+  createClient(){
+    this.clientService.create(this.Newclient).subscribe(
+      ()=>{
+        this.getClient();
+        console.log("true");
+        
+      }
+    );
   }
 
 }
