@@ -13,10 +13,18 @@ export class OperationsComponent implements OnInit {
   constructor(private operationService: OperationService) { }
 
   ngOnInit() {
-    this.getOperations();
+    this.getOperation();
   }
-getOperations(){
-  this.operationService.findAllOperation().subscribe(operations =>this.operations=operations);
+getOperation(){
+  this.operationService.getAll().subscribe(operations =>this.operations=operations);
   
+}
+deleteOperation(Operation){
+  this.operationService.delete(Operation).subscribe(()=>{
+    let index = this.operations.indexOf(Operation);
+    this.operations.splice(index, 1);
+    this.getOperation();
+    console.log("true");
+  })
 }
 }

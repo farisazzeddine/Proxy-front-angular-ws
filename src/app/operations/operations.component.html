@@ -1,30 +1,36 @@
 <div class="container text-center mt-5">
-<h1 class="text-uppercase"> Les operations  </h1>
-<li *ngFor="let Operation of operations" class="collection-item">
-        {{Operation.id}}:
-        <span>
-        N° de Compte{{Operation.numCompte_id}}
-        </span>
-        <span>
-        Montant de opération: {{Operation.montantOperation}}
-        </span>
-        <span>
-         Versement: {{Operation.versement}}
-        </span>
-        <span>
-         Retrait: {{Operation.retrait}}
-        </span>
-        <span>
-        Virement:{{Operation.virement}}
-        </span>
-         <span>
-        Date d'operation{{Operation.created_at}}
-        </span>
-         <br/><span>
-        Nouveau Solde: {{Operation.Compte.id}}
-        </span>
-        <br/><span>
-        type d'operation{{Operation.opertaion_retrait.Operation_id}}
-        </span>
-</li>
+        <h1 class="text-uppercase color-amber font-weight-bold"> Les operations </h1>
+        <hr>
+        <li *ngFor="let Operation of operations" class="collection-item mt-4">
+                {{Operation.id}}:
+                <span>
+                        N° de Compte{{Operation.numCompte_id}}
+                </span>
+                <span>
+                        Montant de opération: {{Operation.montantOperation}}
+                </span>
+                <span>
+                        Versement: {{Operation.versement}}
+                </span>
+                <span>
+                        Retrait: {{Operation.retrait}}
+                </span>
+                <span>
+                        Virement:{{Operation.virement}}
+                </span>
+                <span>
+                        Date d'operation{{Operation.created_at}}
+                </span>
+                <br /><span>
+                        Nouveau Solde: {{Operation.Compte.id}}
+                </span>
+                <br /><span>
+                        type d'operation{{Operation.opertaion_retrait.Operation_id}}
+                </span>
+                <div class="text-right">
+                        <button mdbBtn (click)="deleteOperation(Operation)" size="sm" type="button sm" color="danger" mdbWavesEffect>
+                                <mdb-icon far icon="trash-alt"></mdb-icon>
+                        </button>
+                </div>
+        </li>
 </div>

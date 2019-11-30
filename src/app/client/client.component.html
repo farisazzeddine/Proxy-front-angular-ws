@@ -19,7 +19,7 @@
                 <form>
                     <div class="md-form pb-3">
                         <select [(ngModel)]="Newclient.agence" id="agence" name="agence"  class="browser-default custom-select ">
-                            <option value="" disabled>Choisi L'agence</option>
+                            <option value="" disabled>Choisir Agence</option>
                           <option selected></option>
                           <option *ngFor="let agence of agences" value={{agence.id}}>{{agence.nomAgence}}</option>
                         </select>

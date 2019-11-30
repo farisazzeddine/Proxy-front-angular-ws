@@ -8,157 +8,182 @@
 <!-- content -->
 <div class="container">
 
-<div class="row mt-2">
-    
-<!-- start partie agence -->
-  <div class="col-6 mt-2">
-    <h3 class="text-center">Ajouter une agence</h3>
-    <hr>
+  <div class="row mt-2">
+
+    <!-- start partie agence -->
+    <div class="col-6 mt-2">
+      <h3 class="text-center">Ajouter une agence</h3>
+      <hr>
       <section class="form-elegant text-center">
         <mdb-card>
-            <mdb-card-header class="blue-grey white-text text-center py-4">
-                <div style="font-size: 2rem;"><mdb-icon fas icon="house-damage"></mdb-icon></div>
-              </mdb-card-header>
-    <!-- debut de formulaire -->
-    <form class="col-md-12 text-center mt-3">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="nomAgence">Nom d'agence</span>
-        </div>
-        <input [(ngModel)]="newAgence.nomAgence" name="nomAgence" id="nomAgence" type="text" class="form-control" 
-        placeholder="...." aria-label="name"
-          aria-describedby="basic-addon1" required>
-      </div>
+          <mdb-card-header class="blue-grey white-text text-center py-4">
+            <div style="font-size: 2rem;">
+              <mdb-icon fas icon="house-damage"></mdb-icon>
+            </div>
+          </mdb-card-header>
+          <!-- debut de formulaire -->
+          <form class="col-md-12 text-center mt-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="nomAgence">Nom d'agence</span>
+              </div>
+              <input [(ngModel)]="newAgence.nomAgence" name="nomAgence" id="nomAgence" type="text" class="form-control"
+                placeholder="...." aria-label="name" aria-describedby="basic-addon1" required>
+            </div>
 
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span id="adresse" class="input-group-text">Adresse d'agence</span>
-        </div>
-        <textarea [(ngModel)]="newAgence.adresseAgence" name="adresseAgence" id="adresseAgence"
-         class="form-control" aria-label="With textarea" required></textarea>
-      </div>
-      <div class="text-right mt-2">
-      <button mdbBtn (click)="createAgence()" *ngIf="editAg"  size="sm" type="button" color="mdb-color" rounded="true" mdbWavesEffect >Ajoute <mdb-icon fas
-          icon="plus-circle"></mdb-icon></button>
-      <button mdbBtn (click)="updateAgence()" *ngIf="!editAg"  size="sm" type="button" color="amber" rounded="true" mdbWavesEffect >Modifier <mdb-icon fas icon="redo"></mdb-icon></button>
-    </div>
-  </form>
-  </mdb-card>
-  </section>
-    <!-- {{newAgence | json}} -->
-    <!-- fin de formulaire -->
-    <br>
-    <hr>
-    <mdb-card>
-    <!-- affichage des elemnts de formulaire et  -->
-    <ul class="mt-2" *ngFor="let agence of Agences">
-      <li class="collection-item">
-        <p class="font-weight-bold">
-          Agence:
-        </p>
-        <span class="font-italic text-uppercase">{{agence.nomAgence}}</span>
-      </li>
-      <br />
-      <li>
-        <p class="font-weight-bold">L'adresse d'agence:</p>
-        <span class="font-italic">{{agence.adresseAgence}}</span>
-      </li>
-      <br />
-      <li>
-        <p class="font-weight-bold">L'agence créer dans la :</p>
-        <span class="font-italic"> {{agence.created_at}}</span>
-      </li>
-      
-      <div class="text-right">
-        <button mdbBtn (click)="editAgence(agence)" size="sm" type="button sm" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
-        <button mdbBtn (click)="deleteAgence(agence)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
-      </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span id="adresse" class="input-group-text">Adresse d'agence</span>
+              </div>
+              <textarea [(ngModel)]="newAgence.adresseAgence" name="adresseAgence" id="adresseAgence"
+                class="form-control" aria-label="With textarea" required></textarea>
+            </div>
+            <div class="text-right mt-2">
+              <button mdbBtn (click)="createAgence()" *ngIf="editAg" size="sm" type="button" color="mdb-color"
+                rounded="true" mdbWavesEffect>Ajoute <mdb-icon fas icon="plus-circle"></mdb-icon></button>
+              <button mdbBtn (click)="updateAgence()" *ngIf="!editAg" size="sm" type="button" color="amber"
+                rounded="true" mdbWavesEffect>Modifier <mdb-icon fas icon="redo"></mdb-icon></button>
+            </div>
+          </form>
+        </mdb-card>
+      </section>
+      <!-- {{newAgence | json}} -->
+      <!-- fin de formulaire -->
+      <br>
       <hr>
-    </ul>
-  </mdb-card>
-  
-</div>
-<!-- end partie agence -->
-<!-- ********************************************************************************************************* -->
+      <mdb-card>
+        <!-- affichage des elemnts de formulaire et  -->
+        <ul class="mt-2" *ngFor="let agence of Agences">
+          <li class="collection-item">
+            <p class="font-weight-bold">
+              Agence:
+            </p>
+            <span class="font-italic text-uppercase">{{agence.nomAgence}}</span>
+          </li>
+          <br />
+          <li>
+            <p class="font-weight-bold">L'adresse d'agence:</p>
+            <span class="font-italic">{{agence.adresseAgence}}</span>
+          </li>
+          <br />
+          <li>
+            <p class="font-weight-bold">L'agence créer dans la :</p>
+            <span class="font-italic"> {{agence.created_at}}</span>
+          </li>
 
-<!-- start partie parametrage -->
-<div class="col-6 mt-2">
-  <div class="container pl-2" responsive="true">
-    <h3 class="text-center">Frais bancaires</h3>
-    <hr>
-    <mdb-card>
-      <!-- Default form contact -->
-      <mdb-card-header class="blue-grey white-text text-center py-4">
-          <div style="font-size: 2rem;"><mdb-icon fas icon="cogs"></mdb-icon></div>
-        </mdb-card-header>
-<form class="text-center border border-light p-5">
+          <div class="text-right">
+            <button mdbBtn (click)="editAgence(agence)" size="sm" type="button sm" color="indigo" mdbWavesEffect>
+              <mdb-icon fas icon="edit"></mdb-icon>
+            </button>
+            <button mdbBtn (click)="deleteAgence(agence)" size="sm" type="button" color="danger" mdbWavesEffect>
+              <mdb-icon fas icon="trash-alt"></mdb-icon>
+            </button>
+          </div>
+          <hr>
+        </ul>
+      </mdb-card>
 
-<div class="row text-center">
-  <div class="col-md-6">
-      <select [(ngModel)]="newSetting.nomAgence" id="nomAgence" name="nomAgence"  class="browser-default custom-select">
-          <option value="" disabled>Choisi L'agence</option>
-        <option selected></option>
-        <option *ngFor="let agence of Agences" value={{agence.id}}>{{agence.nomAgence}}</option>
-      </select>
-  </div>
-  <div class="col-md-6">
-      <input [(ngModel)]="newSetting.nbrMxconseillers" type="number" id="nbrMxconseillers" name="nbrMxconseillers" class="form-control mb-4" placeholder="N° conseillers-Par-client">
     </div>
-</div>  
+    <!-- end partie agence -->
+    <!-- ********************************************************************************************************* -->
 
-<div class="row text-center">
-    <div class="col-md-6">
-      <input [(ngModel)]="newSetting.commissionVirement" type="number" id="commissionVirement" name="commissionVirement" class="form-control mb-4" placeholder="commission-Virement">
-    </div>
-    <div class="col-md-6">
-        <input [(ngModel)]="newSetting.commissionRetrait" type="number" id="commissionRetrait" name="commissionRetrait" class="form-control mb-4" placeholder="commission-Retrait">
-      </div>
-  </div> 
-  <div class="row text-center">
-      <div class="col-md-6">
-        <input [(ngModel)]="newSetting.commissionRetraitCheque" type="number" id="commissionRetraitCheque" name="commissionRetraitCheque" class="form-control mb-4" placeholder="commission-Retrait-Cheque">
-      </div>
-      <div class="col-md-6">
-          <input [(ngModel)]="newSetting.commissionVersement" type="number" id="commissionVersement" name="commissionVersement" class="form-control mb-4" placeholder="commission-Versement">
-        </div>
-    </div> 
+    <!-- start partie parametrage -->
+    <div class="col-6 mt-2">
+      <div class="container pl-2" responsive="true">
+        <h3 class="text-center">Frais bancaires</h3>
+        <hr>
+        <mdb-card>
+          <!-- Default form contact -->
+          <mdb-card-header class="blue-grey white-text text-center py-4">
+            <div style="font-size: 2rem;">
+              <mdb-icon fas icon="cogs"></mdb-icon>
+            </div>
+          </mdb-card-header>
+          <form class="text-center border border-light p-5">
 
-<div class="row text-center">
-  <div class="col-md-6">
-    <input [(ngModel)]="newSetting.fraisOuvertureCompte" type="number" id="fraisOuvertureCompte"  name="fraisOuvertureCompte" class="form-control mb-4" placeholder="frais-Ouverture-Compte">
-  </div>
-  <div class="col-md-6">
-      <input [(ngModel)]="newSetting.fraisDotation" type="number" id="fraisDotation" name="fraisDotation" class="form-control mb-4" placeholder="frais-Dotation">
-    </div>
-</div>  
+            <div class="row text-center">
+              <div class="col-md-6">
+                <select [(ngModel)]="newSetting.nomAgence" id="nomAgence" name="nomAgence"
+                  class="browser-default custom-select">
+                  <option value="" disabled>Choisir Agence</option>
+                  <option selected></option>
+                  <option *ngFor="let agence of Agences" value={{agence.id}}>{{agence.nomAgence}}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.nbrMxconseillers" type="number" id="nbrMxconseillers"
+                  name="nbrMxconseillers" class="form-control mb-4" placeholder="N° conseillers-Par-client">
+              </div>
+            </div>
 
-<div class="row text-center">
-    <div class="col-md-6">
-      <input [(ngModel)]="newSetting.choixChangementCrtGuichet" type="number" id="choixChangementCrtGuichet" name="choixChangementCrtGuichet" class="form-control mb-4" placeholder="Changement-Crt-Guichet">
-    </div>
-    <div class="col-md-6">
-        <input [(ngModel)]="newSetting.DemandeCheque" type="number" id="DemandeCheque" name="DemandeCheque" class="form-control mb-4" placeholder="Demande-Cheque">
-      </div>
-  </div> 
-  <div class="row text-center">
-      <div class="col-md-6">
-        <input [(ngModel)]="newSetting.TransferSldEtranger" type="number" id="TransferSldEtranger" name="TransferSldEtranger" class="form-control mb-4" placeholder="Transfer-Sld-Etranger">
-      </div>
-      <div class="col-md-6">
-          <input [(ngModel)]="newSetting.NbrMxconseillersParclient" type="number" id="NbrMxconseillersParclient" name="NbrMxconseillersParclient" class="form-control mb-4" placeholder="nbrMxConseillers">
-        </div>
-    </div>  
-   
-    <button mdbBtn (click)="createParametreAg()" color="mdb-color" block="true" type="submit">Créer des frais <mdb-icon fas icon="comment-dollar"></mdb-icon></button>
-  </form>
-  {{ newSetting | json}}
-</mdb-card>
-<!-- Default form contact -->
-    <hr class="font-weight-bold mt-3">
-      <div  class="text-center" *ngFor="let setting of Settings">
+            <div class="row text-center">
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.commissionVirement" type="number" id="commissionVirement"
+                  name="commissionVirement" class="form-control mb-4" placeholder="commission-Virement">
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.commissionRetrait" type="number" id="commissionRetrait"
+                  name="commissionRetrait" class="form-control mb-4" placeholder="commission-Retrait">
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.commissionRetraitCheque" type="number" id="commissionRetraitCheque"
+                  name="commissionRetraitCheque" class="form-control mb-4" placeholder="commission-Retrait-Cheque">
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.commissionVersement" type="number" id="commissionVersement"
+                  name="commissionVersement" class="form-control mb-4" placeholder="commission-Versement">
+              </div>
+            </div>
+
+            <div class="row text-center">
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.fraisOuvertureCompte" type="number" id="fraisOuvertureCompte"
+                  name="fraisOuvertureCompte" class="form-control mb-4" placeholder="frais-Ouverture-Compte">
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.fraisDotation" type="number" id="fraisDotation" name="fraisDotation"
+                  class="form-control mb-4" placeholder="frais-Dotation">
+              </div>
+            </div>
+
+            <div class="row text-center">
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.choixChangementCrtGuichet" type="number" id="choixChangementCrtGuichet"
+                  name="choixChangementCrtGuichet" class="form-control mb-4" placeholder="Changement-Crt-Guichet">
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.DemandeCheque" type="number" id="DemandeCheque" name="DemandeCheque"
+                  class="form-control mb-4" placeholder="Demande-Cheque">
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.TransferSldEtranger" type="number" id="TransferSldEtranger"
+                  name="TransferSldEtranger" class="form-control mb-4" placeholder="Transfer-Sld-Etranger">
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="newSetting.NbrMxconseillersParclient" type="number" id="NbrMxconseillersParclient"
+                  name="NbrMxconseillersParclient" class="form-control mb-4" placeholder="nbrMxConseillers">
+              </div>
+            </div>
+            <div>
+              <button mdbBtn (click)="createParametreAg()" *ngIf="editFrais" color="mdb-color" block="true"
+                type="submit" mdbWavesEffect>Créer des frais <mdb-icon fas icon="comment-dollar"></mdb-icon></button>
+              <button mdbBtn (click)="updateParametreAg()" *ngIf="!editFrais" type="submit" color="amber" block="true"
+                mdbWavesEffect>Modifier les frais <mdb-icon fas icon="redo"></mdb-icon></button>
+            </div>
+          </form>
+          <!-- {{ newSetting | json}} -->
+        </mdb-card>
+        <!-- affichage et modification des parametre des frais -->
+
+        <hr class="font-weight-bold mt-3">
+        <div class="text-center" *ngFor="let setting of Settings">
           <!-- premier ranger pour les commission  -->
           <div class="row mt-3">
-            
+
             <div class="col-md-4">
               <mdb-card-body>
                 <!--Name-->
@@ -168,9 +193,9 @@
                 <samp class="font-weight-bold mb-2">{{setting.NbrMxconseillersParclient}}</samp>
               </mdb-card-body>
             </div>
-        
-        <div class="col-md-4">
-            <mdb-card-body>
+
+            <div class="col-md-4">
+              <mdb-card-body>
                 <!--Name-->
                 <samp class="dark-grey-text mt-2" style="font-size: 11px;">Agence</samp>
                 <hr>
@@ -178,9 +203,9 @@
                 <samp class="font-weight-bold mb-2">{{setting.agence.nomAgence}}</samp>
               </mdb-card-body>
             </div>
-     
-        <div class="col-md-4">
-            <mdb-card-body>
+
+            <div class="col-md-4">
+              <mdb-card-body>
                 <!--Name-->
                 <samp class="dark-grey-text mt-2" style="font-size: 11px;">commission-Virement</samp>
                 <hr>
@@ -189,10 +214,10 @@
               </mdb-card-body>
             </div>
           </div>
-<hr>
-    <div class="row">
-        <div class="col-md-4">
-            <mdb-card-body>
+          <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <mdb-card-body>
                 <!--Name-->
                 <samp class="dark-grey-text mt-2" style="font-size: 11px;">commission-Retrait</samp>
                 <hr>
@@ -200,9 +225,9 @@
                 <samp class="font-weight-bold mb-2">{{setting.commissionRetrait}}</samp>
               </mdb-card-body>
             </div>
-        
-        <div class="col-md-4">
-            <mdb-card-body>
+
+            <div class="col-md-4">
+              <mdb-card-body>
                 <!--Name-->
                 <samp class="dark-grey-text mt-2" style="font-size: 11px;">commission-Retrait-Cheque</samp>
                 <hr>
@@ -211,8 +236,8 @@
               </mdb-card-body>
             </div>
 
-        <div class="col-md-4">
-            <mdb-card-body>
+            <div class="col-md-4">
+              <mdb-card-body>
                 <!--Name-->
                 <samp class="dark-grey-text mt-2" style="font-size: 11px;">commission-Versement</samp>
                 <hr>
@@ -220,78 +245,88 @@
                 <samp class="font-weight-bold mb-2">{{setting.commissionVersement}}</samp>
               </mdb-card-body>
             </div>
-             </div>
-             <!--premier ranger est finis  -->
-                <hr>
-                <!--deuxiem ranger est finis  -->
-             <div class="row mt-3">
+          </div>
+          <!--premier ranger est finis  -->
+          <hr>
+          <!--deuxiem ranger est finis  -->
+          <div class="row mt-3">
 
             <div class="col-md-4">
-                <mdb-card-body>
-                    <!--Name-->
-                    <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">frais-Ouverture-Compte</samp>
-                    <hr>
-                    <!--Quotation-->
-                    <samp class="font-weight-bold mb-2">{{setting.fraisOuvertureCompte}}</samp>
-                  </mdb-card-body>
-                </div>
-            
+              <mdb-card-body>
+                <!--Name-->
+                <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">frais-Ouverture-Compte</samp>
+                <hr>
+                <!--Quotation-->
+                <samp class="font-weight-bold mb-2">{{setting.fraisOuvertureCompte}}</samp>
+              </mdb-card-body>
+            </div>
+
             <div class="col-md-4">
-                <mdb-card-body>
-                    <!--Name-->
-                    <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">Changement-Crt-Guichet</samp>
-                    <hr>
-                    <!--Quotation-->
-                    <samp class="font-weight-bold mb-2">{{setting.choixChangementCrtGuichet}}</samp>
-                  </mdb-card-body>
-                </div>
-           
+              <mdb-card-body>
+                <!--Name-->
+                <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">Changement-Crt-Guichet</samp>
+                <hr>
+                <!--Quotation-->
+                <samp class="font-weight-bold mb-2">{{setting.choixChangementCrtGuichet}}</samp>
+              </mdb-card-body>
+            </div>
+
             <div class="col-md-4">
-                <mdb-card-body>
-                    <!--Name-->
-                    <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">Demande-Cheque</samp>
-                    <hr>
-                    <!--Quotation-->
-                    <samp class="font-weight-bold mb-2">{{setting.DemandeCheque}}</samp>
-                  </mdb-card-body>
-                </div>
-              </div> 
-              <div class="row">
+              <mdb-card-body>
+                <!--Name-->
+                <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">Demande-Cheque</samp>
+                <hr>
+                <!--Quotation-->
+                <samp class="font-weight-bold mb-2">{{setting.DemandeCheque}}</samp>
+              </mdb-card-body>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-md-4">
-                <mdb-card-body>
-                    <!--Name-->
-                    <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">frais-Dotation</samp>
-                    <hr>
-                    <!--Quotation-->
-                    <samp class="font-weight-bold mb-2">{{setting.fraisDotation}}</samp>
-                  </mdb-card-body>
-                </div>
-    
+              <mdb-card-body>
+                <!--Name-->
+                <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">frais-Dotation</samp>
+                <hr>
+                <!--Quotation-->
+                <samp class="font-weight-bold mb-2">{{setting.fraisDotation}}</samp>
+              </mdb-card-body>
+            </div>
+
             <div class="col-md-4">
-                <mdb-card-body>
-                    <!--Name-->
-                    <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">Transfer-Sld-Etranger</samp>
-                    <hr>
-                    <!--Quotation-->
-                    <samp class="font-weight-bold mb-2">{{setting.TransferSldEtranger}}</samp>
-                  </mdb-card-body>
-                </div>
-    
+              <mdb-card-body>
+                <!--Name-->
+                <samp class="dark-grey-text mt-2" style="font-size: 11px;" height="50">Transfer-Sld-Etranger</samp>
+                <hr>
+                <!--Quotation-->
+                <samp class="font-weight-bold mb-2">{{setting.TransferSldEtranger}}</samp>
+              </mdb-card-body>
+            </div>
+
             <div class="col-md-4">
-                <mdb-card-body>
-                    <!--Name-->
-                    <samp class="dark-grey-text mt-2" style="font-size: 12px;" height="50">nbrMxConseillers</samp>
-                    <hr>
-                    <!--Quotation-->
-                    <samp class="font-weight-bold mb-2">{{setting.nbrMxConseillers}}</samp>
-                  </mdb-card-body>
-                </div>
-             </div>
-             <!--deuxiem ranger est finis  -->
+              <mdb-card-body>
+                <!--Name-->
+                <samp class="dark-grey-text mt-2" style="font-size: 12px;" height="50">nbrMxConseillers</samp>
+                <hr>
+                <!--Quotation-->
+                <samp class="font-weight-bold mb-2">{{setting.nbrMxConseillers}}</samp>
+              </mdb-card-body>
+            </div>
+          </div>
+          <div class="text-right">
+            <button mdbBtn (click)="editParametreAg(setting)" size="sm" type="button sm" color="indigo" mdbWavesEffect>
+              <mdb-icon fas icon="edit"></mdb-icon>
+            </button>
+            <button mdbBtn (click)="deleteParametreAg(setting)" size="sm" type="button sm" color="danger"
+              mdbWavesEffect>
+              <mdb-icon far icon="trash-alt"></mdb-icon>
+            </button>
+
+          </div>
+          <!--deuxiem ranger est finis  -->
         </div>
-    </div>  
+      </div>
+    </div>
+    <!--end  partie parametrage   -->
+
+
   </div>
- <!--end  partie parametrage   -->
-    
-  
-</div>

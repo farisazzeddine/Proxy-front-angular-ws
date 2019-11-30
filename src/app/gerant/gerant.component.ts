@@ -13,11 +13,16 @@ import { Agence } from '../models/agence';
 export class GerantComponent implements OnInit {
  Settings:Setting[]=[];
  Agences:Agence[]=[];
+ newAgence={
+   id:0,
+   nomAgence:'',
+   adresseAgence:''
+  };
+
  editAg=true;
- newAgence={id:0, nomAgence:'',adresseAgence:''};
  newSetting={
    id:0,
-  nomAgence:'',
+   nomAgence:'',
   commissionVirement:'',
   commissionRetrait:'',
   commissionRetraitCheque:'',
@@ -30,6 +35,7 @@ export class GerantComponent implements OnInit {
   NbrMxconseillersParclient:'',
   nbrMxconseillers:''
  };
+ editFrais=true;
 
   constructor(private gerantService : GerantService , private agenceService: AgenceService) { }
 
@@ -62,9 +68,31 @@ this.newSetting={
   console.log(true);
 })
 
-  }
+}
+editParametreAg(setting){
+  this.newSetting=setting;
+  this.editFrais=false;
+}
+updateParametreAg(){
+  this.gerantService.update(this.newSetting).subscribe(()=>{
+    this.newSetting={
+      id:0, nomAgence:'',commissionVirement:'',commissionRetrait:'',commissionRetraitCheque:'',commissionVersement:'',fraisOuvertureCompte:'',fraisDotation:'',
+     choixChangementCrtGuichet:'',DemandeCheque:'',TransferSldEtranger:'',NbrMxconseillersParclient:'',nbrMxconseillers:''
+    }; 
+    this.editFrais=true;
+    console.log("true");
+  })
+}
+deleteParametreAg(setting){
+  this.gerantService.delete(setting).subscribe(()=>{
+    let index = this.Settings.indexOf(setting);
+    this.Settings.splice(index, 1);
+    this.getParametreAg();
+    console.log("is deleted");
 
+  })
 
+}
 
   // partie Agence ajoute et supprime et modification
   getAllAgence(){
