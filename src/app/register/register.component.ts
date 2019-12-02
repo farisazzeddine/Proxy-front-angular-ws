@@ -6,22 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+public conseiller ={
 
+};
   constructor() { }
 
   ngOnInit() {
   }
-  register(e){
-    e.preventDefault();
-    const target = e.target;
-    const prenom  =target.querySelector('#prenom').value;
-    const nom  =target.querySelector('#nom').value;
-    const email  =target.querySelector('#email').value;
-    const password  =target.querySelector('#password').value;
-    const c_password  =target.querySelector('#c_password').value;
-    const cin  =target.querySelector('#cin').value;
-    const conseiller  =target.querySelector('#conseiller').value;
-    console.log(conseiller);
+  onRegister(){
+   
+    console.log(this.conseiller);
 
   }
 

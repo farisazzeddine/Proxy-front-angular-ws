@@ -13,6 +13,7 @@ import { AgenceService } from '../service/agence.service';
 export class ClientComponent implements OnInit {
   clients: Client[] = [];
   agences: Client[] = [];
+  editCl:boolean=true;
 Newclient={
     id:0,
     agence:'', name:'', prenom:'', adresse:'', cin:'', codePostal:'',
@@ -20,7 +21,7 @@ Newclient={
     solde:'', cartebancaire:'', typeCarte:''
 
   };
-
+  compteCourant='Compte courant';
   constructor(private clientService : ClientService, private agenceService:AgenceService) { }
 
   ngOnInit() {
@@ -33,9 +34,15 @@ Newclient={
    
   }
   getClient(){
+    
     this.clientService.getAll()
     .subscribe(clients =>this.clients = clients );
     
+    
+  }
+  editClient(Client){
+     this.Newclient=Client;
+     this.editCl=false;
   }
   createClient(){
     this.clientService.create(this.Newclient).subscribe(

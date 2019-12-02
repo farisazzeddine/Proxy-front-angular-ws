@@ -1,36 +1,41 @@
+<section id="backGroundLogin">
+  <article class="container-fluid col-md-8 p-5">
+    <mdb-card>
 <div class="row">
 
   <!-- Default form register -->
-  <div class="col-md-6">
-    <form (submit)="register($event)" class="text-center border border-light p-5">
-
-      <p class="h4 mb-4">Créer employer</p>
+  <div class="col-md-12">
+    <form (submit)="onRegister()" class="text-center p-5">
+<div class="text-center ">
+  <img src="../../favicon.ico" width="100" class="rounded-circle img-fluid">
+  <p class="h4 mb-4">Créer employer</p>
+</div>
 
       <div class="form-row mb-4">
         <div class="col">
           <!-- First name -->
-          <input type="text" id="prenom" class="form-control" placeholder="Prénom" required>
+          <input type="text" name="" id="prenom" class="form-control" placeholder="Prénom" required>
         </div>
         <div class="col">
           <!-- Last name -->
-          <input type="text" id="nom" class="form-control" placeholder="nom" required>
+          <input type="text" name="" id="nom" class="form-control" placeholder="nom" required>
         </div>
       </div>
 
       <!-- E-mail -->
-      <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" required>
+      <input type="email" name="" id="email" class="form-control mb-4" placeholder="E-mail" required>
 
       <!-- Password -->
       <div class="form-row mb-4">
         <div class="col">
-          <input type="password" id="password" class="form-control" placeholder="Password"
+          <input type="password" name="" id="password" class="form-control" placeholder="Password"
             aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
-          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          <small  id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 8 characters and 1 digit
           </small>
         </div>
         <div class="col">
-          <input type="password" id="c_password" class="form-control" placeholder="confirmer Password"
+          <input type="password"  id="c_password" class="form-control" placeholder="confirmer Password"
             aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
           <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 8 characters and 1 digit
@@ -39,7 +44,7 @@
       </div>
 
       <!-- Phone number -->
-      <input type="text" id="cin" class="form-control" placeholder="Numero de CIN°" aria-describedby="defaultRegisterFormPhoneHelpBlock" required>
+      <input type="text" name="cin" id="cin" class="form-control" placeholder="Numero de CIN°" aria-describedby="defaultRegisterFormPhoneHelpBlock" required>
       <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
         ce champ est obligatoire "AB123456"
       </small>
@@ -54,7 +59,7 @@
         </div>
       </div>
       <!-- Sign up button -->
-      <button mdbBtn color="default" block="true" class="my-4" type="submit">Ajouter</button>
+      <button mdbBtn color="dark" block="true" class="my-4" type="submit">Ajouter</button>
 
       <hr>
       <!-- Terms of service -->
@@ -64,5 +69,8 @@
 
     </form>
   </div>
-  <!-- Default form register -->
 </div>
+<!-- Default form register -->
+</mdb-card>
+</article>
+</section>

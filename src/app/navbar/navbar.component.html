@@ -3,9 +3,9 @@
 
     <!-- Navbar brand -->
 
-    <mdb-navbar-brand class="font-weight-bold"><a class="navbar-brand"  href="" [routerLink]="['/accueil']" routerLinkActive="router-link-active">Proxy
+    <mdb-navbar-brand class="font-weight-bold"><a class="navbar-brand"   [routerLink]="['/employer/login']" routerLinkActive="router-link-active">Proxy
       
-        <img src="../../favicon.ico" width="50" class="rounded-circle img-fluid">
+        <img src="../../favicon.ico" width="30" class="rounded-circle img-fluid">
       
       Banque</a></mdb-navbar-brand>
   
@@ -18,7 +18,7 @@
           <a class="nav-link waves-light" mdbWavesEffect ><span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="register">Acèss Employeurs</a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/employer/register']">Acèss Employeurs</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect routerLink="client/compte">Ouverture de compte </a>
@@ -58,7 +58,7 @@
             <div class="btn-group" mdbDropdown>
               <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
               <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                <a class="dropdown-item" href="" routerLink="/accueil">Connecté</a>
+                <a class="dropdown-item" href="" routerLink="/employer/login">Connecté</a>
                 <a class="dropdown-item" href="#">Deconnecté</a>
                 <a class="dropdown-item" href="" routerLink="register" >Créer Employer</a>
                 <div class="divider dropdown-divider"></div>

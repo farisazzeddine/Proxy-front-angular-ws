@@ -63,17 +63,22 @@
                   <div class="row pb-3">
 
                     <div class="md-form col-md-6">
-                      <select class="browser-default custom-select" [(ngModel)]="Newclient.compteCourant" id="compteCourant" name="compteCourant" >
-                          <option value="" disabled>Choisi le Type de compte</option>
-                        <option value=" " disabled selected ></option>
-                        <option value="1">Compte Courant</option>
+                      <select class="browser-default custom-select" [(ngModel)]="Newclient.compteEpargne" id="compteEpargne" name="compteEpargne" >
+                          <option value="0" disabled>Choisi le Type de compte</option>
+                        <option  disabled selected ></option>
                         <option value="1">Compte Epargne</option>
+                      </select>
+                      <select class="browser-default custom-select" [(ngModel)]="Newclient.compteCourant" id="compteCourant" name="compteCourant" >
+                          <option value="0" disabled>Choisi le Type de compte</option>
+                        <option  disabled selected ></option>
+                        <option value="1">Compte Courant</option>
+                        
                       </select>
                     </div>
                     <div class="md-form col-md-6">
                         <select [(ngModel)]="Newclient.cartebancaire" id="cartebancaire" name="cartebancaire" class="browser-default custom-select">
                           <option value="" disabled>Carte Bancaire</option>
-                          <option value=" " disabled selected ></option>
+                          <option value="" disabled selected ></option>
                           <option value="0">Sans</option>
                           <option value="1">Avec</option>
                         </select>
@@ -106,9 +111,12 @@
                 </form>
                 <!--Body-->
                 <div class="text-center mb-3">
-                  <button (click)="createClient()" type="button" mdbBtn gradient="blue" block="true" rounded="true"
+                  <button (click)="createClient()" *ngIf="editCl" type="button" mdbBtn gradient="blue" block="true" rounded="true"
                     class="z-depth-1a waves-light" mdbWavesEffect>Ajouter</button>
-                </div>
+                    <button (click)="updateClient()" *ngIf="!editCl"  type="button" mdbBtn color="light-green" block="true" rounded="true"
+                    class="z-depth-1a waves-light" mdbWavesEffect>Modifier</button>
+                
+                  </div>
               </mdb-card-body>
               <!--Footer-->
               <p>{{ Newclient | json }}</p>
@@ -141,11 +149,15 @@
               <br /><span>
                 ouverture de compte à: {{Client.ville}}
               </span>
-              <br /><span>
-                {{Client.compteCourant}}
+              <br/><span [textContent]="Client.compteCourant">
+               
+                compte courant:
+                <input type="hidden" value="{{Client.compteCourant}}">
+               
               </span>
+             
               <br /><span>
-                {{Client.compteEpargne}}
+                  compte epargne: {{Client.compteEpargne}}
               </span>
               <br /> <span>
                 ce compte créer dans la date : {{Client.created_at}}
