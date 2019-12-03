@@ -19,11 +19,12 @@ import { OperationsComponent } from './operations/operations.component';
 import { GerantComponent } from './gerant/gerant.component';
 import { GerantService } from './service/gerant.service';
 import { AgenceService } from './service/agence.service';
+import { LoginService } from './service/login.service';
+import { TokenService } from './service/token.service';
 // Material angular 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
-import { LoginService } from './service/login.service';
 
 
 
@@ -59,7 +60,8 @@ import { LoginService } from './service/login.service';
     OperationService,
     GerantService, 
     AgenceService,
-    LoginService
+    LoginService,
+    TokenService
   ],
 
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../service/login.service';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   } ;
   public error = null;
 
-  constructor(private loginService:LoginService) { }
+  constructor(
+    private loginService:LoginService,
+    private tokenService:TokenService
+    ) { }
 
   ngOnInit() {
   }
@@ -23,14 +27,17 @@ export class LoginComponent implements OnInit {
     }
     this.loginService.create(this.form)
     .subscribe(
-     data => console.log("success"+"/"+this.form),
-    error=>  this.handelError(error)
+     data => this.handleResponse(data),
+     error=>  this.handleError(error)
      
     );
 
   }
+  handleResponse(data){
+    this.tokenService.handleToken(data.access_Token);
+  }
 
-  handelError(error){
+  handleError(error){
    this.error = error.error.error;
   }
 

@@ -2,3 +2,9 @@ section {
     background:url(../../assets/img/Dalmatian-Spots.svg);
     background-size: cover;
 }
+.ng-invalid:not(form){
+    border-bottom:5px solid #dd2c00;
+}
+.ng-valid:not(form){
+    border-bottom:5px solid #1de9b6;
+}
