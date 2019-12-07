@@ -1,58 +1,63 @@
 <section id="backGroundLogin">
-<article class="container-fluid col-md-8 p-5">
-  <!-- partie image carousel login -->
-  <mdb-card>
-    <div class="row">
-      <div class="col-md-6 text-center">
-        <mdb-carousel [isControls]="false" [animation]="'slide'">
-          <mdb-carousel-item>
-            <img class="d-block" src="assets/img/MenSmock.jpg" alt="Second slide" width="400" height="500">
-          </mdb-carousel-item>
-          <mdb-carousel-item>
+  <article class="container-fluid col-md-8 p-5">
+    <!-- partie image carousel login -->
+    <mdb-card>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <mdb-carousel [isControls]="false" [animation]="'slide'">
+            <mdb-carousel-item>
+              <img class="d-block" src="assets/img/MenSmock.jpg" alt="Second slide" width="400" height="500">
+            </mdb-carousel-item>
+            <mdb-carousel-item>
               <img class="d-block" src="assets/img/MenInMoon(3).jpg" alt="First slide" width="400" height="500">
-          </mdb-carousel-item>
-          <mdb-carousel-item>
-            <img class="d-block" src="assets/img/MenInMoon(2).jpg" alt="Third slide" width="400" height="500">
-          </mdb-carousel-item>
-        </mdb-carousel>
-      </div>
+            </mdb-carousel-item>
+            <mdb-carousel-item>
+              <img class="d-block" src="assets/img/MenInMoon(2).jpg" alt="Third slide" width="400" height="500">
+            </mdb-carousel-item>
+          </mdb-carousel>
+        </div>
 
 
-      <!-- partie login  -->
-      <div class="col-md-6">
-        <form  #loginForm=ngForm  (ngSubmit)="onSubmit()" class="text-center p-5">
-          <p class="h4 mb-4">Employer</p>
-          <div class="alert alert-danger" role="alert" [hidden]="!error" >
-            {{error}}
-          </div>
-          <!-- Email -->
-          <input type="text" id="cin" name="cin" class="form-control mb-4" placeholder="CIN" [(ngModel)]="form.cin" required>
-          <!-- Password -->
-          <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password" [(ngModel)]="form.password" required>
-          <div class="d-flex justify-content-around">
-            <div>
-              <!-- Remember me -->
-              <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+        <!-- partie login  -->
+        <div class="col-md-6">
+          <form #loginForm=ngForm (ngSubmit)="onSubmit()" class="text-center p-5">
+            <p class="h4 mb-4">Employer</p>
+            <div class="alert alert-danger" role="alert" [hidden]="!error">
+              {{error}}
             </div>
-            <div>
-              <!-- Forgot password -->
-              <a href="">Forgot password?</a>
+            <!-- Email -->
+            <input type="text" id="cin" name="cin" class="form-control mb-4" placeholder="CIN" [(ngModel)]="form.cin"
+              required>
+            <!-- Password -->
+            <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password"
+              [(ngModel)]="form.password" required>
+            <div class="d-flex justify-content-around">
+              <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+              </div>
+              
             </div>
-          </div>
-          <!-- Sign in button -->
-          <button mdbBtn color="dark" rounded="true" block="true" class="my-4" type="submit" [disabled]="!loginForm.valid">Connecté</button>
-          <hr>
-          <!-- Register -->
-          <p>Créer Un(e)?
-            <a  [routerLink]="['/employer/register']" >Nouveau Employeur</a>
-          </p>
+            <!-- Sign in button -->
+            <button mdbBtn color="dark" rounded="true" block="true" class="my-4" type="submit"
+            [disabled]="!loginForm.valid">Connecté</button>
+                  <small class="float-right">
+                      <!-- Forgot password -->
+                      <a href="">Forgot password?</a>
+                    </small>
+                    <hr>
+            <!-- Register -->
+            <p class="mt-4">Créer Un(e)?
+              <a [routerLink]="['/employer/register']">Nouveau Agent(e)</a>
+            </p>
+            
 
-          <!-- Social login -->
-        </form>
-        <!-- Default form login -->
+            <!-- Social login -->
+          </form>
+          <!-- Default form login -->
+        </div>
+
       </div>
-
-    </div>
-  </mdb-card>
-</article>
+    </mdb-card>
+  </article>
 </section>

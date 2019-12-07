@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OperationService } from '../service/operation.service';
 import { Operation } from '../models/operation';
 
+
 @Component({
   selector: 'app-operations',
   templateUrl: './operations.component.html',
@@ -9,11 +10,12 @@ import { Operation } from '../models/operation';
 })
 export class OperationsComponent implements OnInit {
   operations: Operation[] = [];
-
+  selected = 'option2';
   constructor(private operationService: OperationService) { }
 
   ngOnInit() {
     this.getOperation();
+    
   }
 getOperation(){
   this.operationService.getAll().subscribe(operations =>this.operations=operations);
@@ -28,3 +30,4 @@ deleteOperation(Operation){
   })
 }
 }
+

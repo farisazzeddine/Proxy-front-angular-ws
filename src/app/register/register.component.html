@@ -16,6 +16,7 @@
               <div class="col">
                 <input [(ngModel)]="form.prenom" type="text" name="prenom" id="prenom" class="form-control"
                   placeholder="Prénom" required>
+                 
               </div>
               <!-- Last name -->
               <div class="col">
@@ -51,21 +52,31 @@
             <!-- E-mail -->
             <input name="email" [(ngModel)]="form.email" type="email"  id="email" class="form-control mb-4"
               placeholder="E-mail" required>
+              <!-- <div class="alert alert-danger" role="alert" [hidden]="!error.email" >
+                {{error.email}}
+              </div> -->
 
             <!-- choix de conseiller au gerant -->
             <div class="row">
+                <div class="col-md-6 mx-auto d-flex justify-content-center">
+                    <div class="form-check">
+                      <input [(ngModel)]="form.is_gerant" type="radio" name="is_gerant" class="form-check-input"
+                        id="gerant" name="gerant" value="1" mdbInput >
+                      <label class="form-check-label" for="gerant">Je suis un(e) Gerant (e)</label>
+                    </div>
+                  </div>
               <div class="col-md-6 mx-auto d-flex justify-content-center">
                 <div class="form-check">
                   <input [(ngModel)]="form.is_conseiller" type="radio" name="is_conseiller" class="form-check-input"
-                    id="conseiller" name="conseiller" value="1" mdbInput required>
-                  <label class="form-check-label" for="conseiller">je suis un(e) employer</label>
+                    id="conseiller" name="conseiller" value="1" mdbInput >
+                  <label class="form-check-label" for="conseiller">Je suis un(e) Agent (e)</label>
                 </div>
               </div>
             </div>
             <!-- Sign up button -->
             <button mdbBtn color="dark" block="true" class="my-4" [disabled]="!registerForm.valid"
               type="submit">Inscription</button>
-
+              {{ form | json}}
             <hr>
             <!-- Terms of service -->
             <p>En cliquant

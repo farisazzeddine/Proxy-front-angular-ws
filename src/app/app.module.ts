@@ -25,6 +25,11 @@ import { TokenService } from './service/token.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
+//auth settings
+import { AuthService } from './service/auth.service';
+import { AfterLoginService } from './service/after-login.service';
+import { BeforeLoginService } from './service/before-login.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 
 
@@ -51,7 +56,8 @@ import {MatRadioModule} from '@angular/material/radio';
     FormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    MatRadioModule
+    MatRadioModule,
+    
 
     
   ],
@@ -61,8 +67,13 @@ import {MatRadioModule} from '@angular/material/radio';
     GerantService, 
     AgenceService,
     LoginService,
-    TokenService
+    TokenService,
+    AuthService,
+    AfterLoginService,
+    BeforeLoginService,
+    
   ],
+  
 
   bootstrap: [AppComponent]
 })

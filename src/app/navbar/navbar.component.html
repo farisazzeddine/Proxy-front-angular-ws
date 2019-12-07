@@ -3,7 +3,7 @@
 
     <!-- Navbar brand -->
 
-    <mdb-navbar-brand class="font-weight-bold"><a class="navbar-brand"   [routerLink]="['/employer/login']" routerLinkActive="router-link-active">Proxy
+    <mdb-navbar-brand class="font-weight-bold"><a class="navbar-brand"   [routerLink]="['']" routerLinkActive="router-link-active">Proxy
       
         <img src="../../favicon.ico" width="30" class="rounded-circle img-fluid">
       
@@ -18,52 +18,39 @@
           <a class="nav-link waves-light" mdbWavesEffect ><span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/employer/register']">Acèss Employeurs</a>
+          <a class="nav-link waves-light" mdbWavesEffect *ngIf="loggedIn" [routerLink]="['/employer/register']">Acèss Employeurs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="client/compte">Ouverture de compte </a>
+          <a class="nav-link waves-light" *ngIf="loggedIn" mdbWavesEffect routerLink="client/compte">Ouverture de compte </a>
         </li>
   
         <!-- Dropdown -->
         <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" *ngIf="loggedIn" mdbWavesEffect>
            Operation sur compte<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="" routerLink="operations/liste" >Toutes les opérations</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect   routerLink="operations/liste" >Toutes les opérations</a>
             <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Virement</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Versement</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Retrait</a>
-            <!-- <div class="divider dropdown-divider"></div> -->
-            <!-- <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a> -->
+            <a class="dropdown-item waves-light" mdbWavesEffect >Virement</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect >Versement</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect >Retrait</a>
           </div>
         </li>
-  
       </ul>
       <!-- Links -->
   
       <ul class="navbar-nav ml-auto nav-flex-icons">
-        <!-- <li class="nav-item">
-          <a class="nav-link">
-            <mdb-icon fab icon="twitter"></mdb-icon>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <mdb-icon fab icon="google-plus"></mdb-icon>
-          </a>
-        </li> -->
         <li class="nav-item">
           <a class="nav-link">
             <div class="btn-group" mdbDropdown>
               <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
               <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                <a class="dropdown-item" href="" routerLink="/employer/login">Connecté</a>
-                <a class="dropdown-item" href="#">Deconnecté</a>
-                <a class="dropdown-item" href="" routerLink="register" >Créer Employer</a>
+                <a class="dropdown-item" *ngIf="!loggedIn" routerLink="/employer/login">Connecté</a>
+                <a class="dropdown-item" (click)="deconnecte($event)" *ngIf="loggedIn">Deconnecté</a>
+                <a class="dropdown-item" *ngIf="!loggedIn" [routerLink]="['/accueil/register']" >Créer Employer</a>
                 <div class="divider dropdown-divider"></div>
-                <a class="dropdown-item" href="" routerLink="gerant/configuration" >Gérant et paramétrage</a>
-                <a class="dropdown-item" href="" routerLink="client/compte" >clients</a>
+                <a class="dropdown-item" *ngIf="loggedIn" routerLink="gerant/configuration" >Gérant et paramétrage</a>
+                <a class="dropdown-item" *ngIf="loggedIn" routerLink="client/compte" >clients</a>
               </div>
             </div>
           </a>
