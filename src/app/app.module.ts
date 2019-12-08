@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -25,11 +25,16 @@ import { TokenService } from './service/token.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 //auth settings
 import { AuthService } from './service/auth.service';
 import { AfterLoginService } from './service/after-login.service';
 import { BeforeLoginService } from './service/before-login.service';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 
 
@@ -57,7 +62,11 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     BrowserAnimationsModule,
     MatSliderModule,
     MatRadioModule,
-    
+    MatMenuModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatCheckboxModule
 
     
   ],
@@ -73,8 +82,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
     BeforeLoginService,
     
   ],
-  
-
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+  ],
 })
 export class AppModule { }

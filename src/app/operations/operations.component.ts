@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OperationService } from '../service/operation.service';
 import { Operation } from '../models/operation';
-
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-operations',
@@ -10,7 +10,14 @@ import { Operation } from '../models/operation';
 })
 export class OperationsComponent implements OnInit {
   operations: Operation[] = [];
-  selected = 'option2';
+  disableSelect = new FormControl(false);
+  animalControl = new FormControl('', [Validators.required]);
+  selectFormControl = new FormControl('', Validators.required);
+  animals= [
+    'Retrait',
+     'Versement',
+      'Vairement'
+  ];
   constructor(private operationService: OperationService) { }
 
   ngOnInit() {

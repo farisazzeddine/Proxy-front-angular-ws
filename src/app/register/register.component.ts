@@ -32,7 +32,7 @@ public error = [];
    )}  
    handleResponse(data){
     this.tokenService.handleToken(data.access_token);
-    this.router.navigateByUrl('/gerant/configuration')
+    this.router.navigateByUrl('/employer/login')
   }
    handelError(error){
     this.error = error.error.errors;

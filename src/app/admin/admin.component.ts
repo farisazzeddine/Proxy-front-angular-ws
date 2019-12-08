@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @Component({
@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 isClosed:boolean=true;
+showFiller = false;
+public loggedIn:boolean;
   constructor() { }
 
   ngOnInit() {

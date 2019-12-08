@@ -3,11 +3,13 @@
         <hr>
         <div class="container text-center col-md-12">
                 <!-- Material form contact -->
-                <mdb-card>
+ <mdb-card>
 
-                        <mdb-card-header  class="indigo white-text text-center py-4">
+                        <mdb-card-header class="indigo white-text text-center py-4">
                                 <h1>
-                                        <strong><mdb-icon fas icon="hand-holding-usd" ></mdb-icon></strong>
+                                        <strong>
+                                                <mdb-icon fas icon="hand-holding-usd"></mdb-icon>
+                                        </strong>
                                 </h1>
                         </mdb-card-header>
 
@@ -17,39 +19,48 @@
 
                                 <!-- Form -->
                                 <form class="text-center" style="color: #757575;">
-                                               
-                                                              
-                                                              
-                                                              
-                                                <div class="form-row">
-                                                                <div class="col">
-                                                                  <!-- First name -->
-                                                                  <div class="md-form">
-                                                                    <input type="text" id="materialRegisterFormFirstName" class="form-control" mdbInput>
-                                                                    <label for="materialRegisterFormFirstName">First name</label>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="col">
-                                                                  <!-- Last name -->
-                                                                  <div class="md-form">
-                                                                    <input type="email" id="materialRegisterFormLastName" class="form-control" mdbInput>
-                                                                    <label for="materialRegisterFormLastName">Last name</label>
-                                                                  </div>
-                                                                </div>
-                                                              </div>
 
-                                        <!-- Name -->
-                                        <div class="md-form mt-3">
-                                                <input type="text" id="materialContactFormName" class="form-control"
-                                                        mdbInput>
-                                                <label for="materialContactFormName">Name</label>
+                                        <div class="container col-md-10 mt-4">
+                                                <h4>Toute les operation</h4>
+                                                <p><mat-checkbox >Disable select</mat-checkbox></p>
+                                                <div class="col">
+                                                <mat-form-field class="col-md-12">
+                                                        <mat-label>Choisi l'operation</mat-label>
+                                                        <mat-select  required>
+                                                                <mat-option>--</mat-option>
+                                                                <mat-option *ngFor="let animal of animals"
+                                                                        [value]="animal">
+                                                                        {{animal}}
+                                                                </mat-option>
+                                                        </mat-select>
+                                                        <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+                                                  <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+                                                </mat-form-field>
+                                                </div>
                                         </div>
 
-                                        <!-- E-mail -->
+                                        <div class="form-row">
+                                                <div class="col">
+                                                        <!-- le numero de compte effectue l'operation -->
+                                                        <div class="md-form">
+                                                                <input type="text" id="materialRegisterFormFirstName"
+                                                                        class="form-control" mdbInput>
+                                                                <label for="materialRegisterFormFirstName">Le numéro de compte</label>
+                                                        </div>
+                                                </div>
+                                                <div class="col">
+                                                        <!-- Montant d'operation -->
+                                                        <div class="md-form">
+                                                                <input type="number" id="materialRegisterFormLastName" class="form-control" mdbInput>
+                                                                <label for="materialRegisterFormLastName">Montant D'operation</label>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <!-- le compte benficie de virement-->
                                         <div class="md-form">
-                                                <input type="email" id="materialContactFormEmail" class="form-control"
+                                                <input type="text" id="materialContactFormEmail" class="form-control"
                                                         mdbInput>
-                                                <label for="materialContactFormEmail">E-mail</label>
+                                                <label for="materialContactFormEmail">Virement Vers le Compte</label>
                                         </div>
 
 
@@ -65,7 +76,7 @@
 
                         </mdb-card-body>
 
-                </mdb-card>
+</mdb-card>
                 <!-- Material form contact -->
 
         </div>
