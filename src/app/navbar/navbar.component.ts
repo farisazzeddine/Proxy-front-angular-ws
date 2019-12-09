@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
- 
+  showFiller = false;
   public loggedIn:boolean;
   constructor(
     private Auth:AuthService,
@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
        );
 
   }
+  
   deconnecte(event: MouseEvent){
     event.preventDefault();
     this.tokenService.remove();

@@ -30,6 +30,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
+
 
 //auth settings
 import { AuthService } from './service/auth.service';
@@ -66,7 +68,8 @@ import { BeforeLoginService } from './service/before-login.service';
     MatSidenavModule,
     MatButtonModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatListModule
 
     
   ],

@@ -11,10 +11,13 @@ export class AdminComponent implements OnInit {
 isClosed:boolean=true;
 showFiller = false;
 public loggedIn:boolean;
+
+typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   constructor() { }
 
   ngOnInit() {
   }
+  
   openSide(){
   this.isClosed=!this.isClosed;
   }
