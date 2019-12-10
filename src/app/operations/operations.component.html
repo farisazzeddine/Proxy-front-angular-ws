@@ -1,5 +1,5 @@
-<body class="container col-md-12">
-        <article >
+<body class="container-fluid col-md-12">
+        
     <mat-drawer-container class="example-container" autosize>
            <mat-drawer #drawer class="example-sidenav mdb-color white-text text-center" mode="side">
 
@@ -9,7 +9,7 @@
                                                 <mat-nav-list><a mat-list-item  (click)="opentRetrait()" class="white-text text-center">Retrait</a> </mat-nav-list>
                                                 <mat-nav-list><a mat-list-item  (click)="opentVersement()" class="white-text text-center">Versement</a> </mat-nav-list>
                                                 <mat-nav-list><a mat-list-item (click)="openViremet()" class="white-text text-center">Virement</a> </mat-nav-list>
-                                                <mat-nav-list><a mat-list-item class="white-text text-center">Toute les opération</a> </mat-nav-list>
+                                                <mat-nav-list><a mat-list-item (click)="openOperation()" class="white-text text-center">Toute les opérations</a> </mat-nav-list>
 
                                         </mat-list>
                                 </div>
@@ -18,141 +18,115 @@
                             </button> -->
             </mat-drawer>
 
-            <div class="example-sidenav-content container-fluid" (click)="drawer.toggle()">
+            <div class="example-sidenav-content container  col-md-12" (click)="drawer.toggle()">
                     <button mdbWavesEffect type="button" size="sm" color="indigo" mdbBtn>
                             <mdb-icon fas icon="align-justify"></mdb-icon>
                     </button>
-                    <div class="text-center">
-                           <h1 class="text-uppercase color-amber font-weight-bold"> Les operations </h1>
-                                   <hr>
-                         <div class="mt-3">
-                                 <!-- Material form contact -->
-                            <mdb-card>
-                                 <mdb-card-header class="indigo white-text text-center py-4">
-                                                 <h1> <strong> <mdb-icon fas icon="hand-holding-usd"></mdb-icon> </strong> </h1>
-                                 </mdb-card-header>
-                                                        <!--Card content-->
-                                        <mdb-card-body class="px-lg-5 pt-0">
+                    <div class="mt-3 container col-md-12 text-center">
+                        <h3 class="text-monospace text-capitalize">ajouter une opération </h3>
+                         <hr>
+                    </div>
+            </div> 
+            <mat-grid-list class="my-3 mx-3" cols="2" rowHeight="3:2">
+                        <mat-grid-tile>
+                                <mdb-card cols="2">
                                          <!-- Form -->
-                                                 <form #OperationForm=ngForm (submit)="CreateOperation()" class="text-center" style="color: #757575;">
-                                                          <div class="container col-md-12 mt-4">                                                                           
-                                                                 <div class="col text-center text-capitalize">
-                                                                   <h1 [(ngModel)]="operation.virement" name="virement" *ngIf="!isVirement" >Virement sur compte</h1>
-                                                                   <h1 [(ngModel)]="operation.retrait" name="retrait" *ngIf="!isRetrait" >Retrait sur compte</h1>
-                                                                   <h1 [(ngModel)]="operation.versement" name="versement" *ngIf="!isVersement" >Versement sur compte</h1>
-                                                                   
-                                                                </div>
-                                                           </div>
-                                                           <div class="form-row">
-                                                              <div class="col">
-                                                   <!-- le numero de compte effectue l'operation -->
-                                                              <div class="md-form">
-                                                                      <input [(ngModel)]="operation.numCompte_id" name="numCompte_id" type="text"  id="materialRegisterFormFirstName"  class="form-control"  mdbInput>
-                                                                      <label  for="materialRegisterFormFirstName">Le numéro de compte</label>
-                                                             </div>
-                                                           </div>
-                                                           <div class="col">
-                                                                    <!-- Montant d'operation -->
-                                                                    <div class="md-form">
-                                                                            <input [(ngModel)]="operation.montantOperation" name="montantOperation" type="number"  id="materialRegisterFormLastName"  class="form-control"  mdbInput>
-                                                                            <label for="materialRegisterFormLastName">Montant D'operation</label>
-                                                                    </div>
-                                                            </div>
-                                                     </div>
-                                                    <!-- le compte benficie de virement-->
-                                                    <div *ngIf="!isVirement" class="md-form">
-                                                             <input [(ngModel)]="operation.virementVersCompte" name="virementVersCompte" type="text"  id="materialContactFormEmail" class="form-control" mdbInput>          
-                                                             <label for="materialContactFormEmail">Virement Vers le Compte</label>
-                                                     </div>
-                                                 <!-- Send button -->
-                                                <button mdbBtn color="indigo" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect" mdbWavesEffect [disabled]="!OperationForm.valid" type="submit">Send</button>
-                                                {{operation | json}}
-                                                </form>
-                                         <!-- Form -->
-                                         </mdb-card-body>
-                           </mdb-card>
-                        <!-- Material form contact -->
-                         </div>
-                         <!-- partie affichage -->
-                         <section class="col-md-12 mt-3">
-                                        <h4>Toute les operation</h4> 
-                                        <p >On sait depuis longtemps que travailler avec du
-                                                        texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur
-                                                        la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du
-                                                        texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en
-                                                        tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en
-                                                        page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une
-                                                        recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur
-                                                        phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident,
-                                                        souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases
-                                                        embarassantes).
-                                
-                                
-                                                        D'où vient-il?
-                                                        Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il
-                                                        trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le
-                                                        rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intéressé
-                                                        à un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en
-                                                        étudiant tous les usages de ce mot dans la littérature classique, découvrit la source
-                                                        incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus
-                                                        Bonorum et Malorum" (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très
-                                                        populaire pendant la Renaissance, est un traité sur la théorie de l'éthique. Les premières
-                                                        lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.
-                                
-                                                        L'extrait standard de Lorem Ipsum utilisé depuis le XVIè siècle est reproduit ci-dessous pour
-                                                        les curieux. Les sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" de Cicéron sont
-                                                        aussi reproduites dans leur version originale, accompagnée de la traduction anglaise de H.
-                                                        Rackham (1914).
-                                
-                                                        Où puis-je m'en procurer?
-                                                        Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie
-                                                        d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas
-                                                        une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez
-                                                        être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem
-                                                        Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le
-                                                        seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en
-                                                        combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le
-                                                        Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des
-                                                        touches d'humour.
-                                                    </p>  
-                                 <li *ngFor="let Operation of operations" class="collection-item mt-4">
-                                                {{Operation.id}}:
-                                                <span>
-                                                        N° de Compte{{Operation.numCompte_id}}
-                                                </span>
-                                                <span>
-                                                        Montant de opération: {{Operation.montantOperation}}
-                                                </span>
-                                                <span>
-                                                        Versement: {{Operation.versement}}
-                                                </span>
-                                                <span>
-                                                        Retrait: {{Operation.retrait}}
-                                                </span>
-                                                <span>
-                                                        Virement:{{Operation.virement}}
-                                                </span>
-                                                <span>
-                                                        Date d'operation{{Operation.created_at}}
-                                                </span>
-                                                <br /><span>
-                                                        Nouveau Solde: {{Operation.Compte.id}}
-                                                </span>
-                                                <br /><span>
-                                                        type d'operation{{Operation.opertaion_retrait.Operation_id}}
-                                                </span>
-                                                <div class="text-right">
-                                                        <button mdbBtn (click)="deleteOperation(Operation)" size="sm"
-                                                                type="button sm" color="danger" mdbWavesEffect>
-                                                                <mdb-icon far icon="trash-alt"></mdb-icon>
-                                                        </button>
-                                                </div>
-                                                
-                                 </li>
-                         </section>
-                   </div>
-            </div>
+                                         <mdb-card-header class="indigo white-text text-center py-4">
+                                                                <h5><strong><mdb-icon fas icon="hand-holding-usd"></mdb-icon></strong></h5>
+                                         </mdb-card-header>
+                                                <form #OperationForm=ngForm (submit)="CreateOperation()" class="text-center">
+                                                        <div class="container col-md-12 mt-4">                                                                           
+                                                                <div class="col text-center text-capitalize">
+                                                                         <h1 [(ngModel)]="operation.virement" name="virement" *ngIf="!isVirement" >Virement sur compte</h1>
+                                                                         <h1 [(ngModel)]="operation.retrait" name="retrait" *ngIf="!isRetrait" >Retrait sur compte</h1>
+                                                                         <h1 [(ngModel)]="operation.versement" name="versement" *ngIf="!isVersement" >Versement sur compte</h1>                                         
+                                                                 </div>
+                                                        </div>
+                                                         <div class="form-row mx-3">
+                                                                <div class="col">
+                                                                                                     <!-- le numero de compte effectue l'operation -->
+                                                                     <div class="md-form">
+                                                                             <input [(ngModel)]="operation.numCompte_id" name="numCompte_id" type="text"  id="materialRegisterFormFirstName"  class="form-control"  mdbInput>
+                                                                             <label  for="materialRegisterFormFirstName">Le numéro de compte</label>
+                                                                     </div>
+                                                                 </div>
+                                                         <div class="col">
+                                                                                           <!-- Montant d'operation -->
+                                                                 <div class="md-form">
+                                                                         <input [(ngModel)]="operation.montantOperation" name="montantOperation" type="number"  id="materialRegisterFormLastName"  class="form-control"  mdbInput>
+                                                                         <label for="materialRegisterFormLastName">Montant D'operation</label>
+                                                                 </div>
+                                                         </div>
+                                          
+                                                                  </div>
+                                                                          <!-- le compte benficie de virement-->
+                                                                          <div class="form-row mx-3">
+                                                                              <div *ngIf="!isVirement" class="md-form col-md-12">
+                                                                                   <input [(ngModel)]="operation.virementVersCompte" name="virementVersCompte" type="text"  id="materialContactFormEmail" class="form-control" mdbInput>          
+                                                                                   <label for="materialContactFormEmail">Virement Vers le Compte</label>
+                                                                               </div>
+                                                                           </div>
+                                                                       <!-- Send button -->
+                                                                       <div class="float-right">
+                                                                               <button mdbBtn color="indigo" f rounded="true"  class="my-4 waves-effect" mdbWavesEffect [disabled]="!OperationForm.valid" type="submit">Send</button>
+                                                                       </div> 
+                                                          </form>
+                                                                   {{operation | json}}
+                                                  <!-- Form -->
+                                                                                           
+                                        </mdb-card>
+                        </mat-grid-tile>
+                        <mat-grid-tile (click)="drawer.toggle()">
+                                        <div class="col-md-6 mx-2 my-2  text-center">
+                                                 <img width="350"  src="assets/img/Money_SVG.svg" alt="Second slide"> 
+                                        </div>                      
+                        </mat-grid-tile>
 
-    </mat-drawer-container>
+           </mat-grid-list>
+          <!-- partie affichage -->     
+<section *ngIf="!tOperation" class="text-center mx-5 mt-4">
+        <article  class="col-md-12 col-lg-12">
+         <h2 class="text-monospace text-capitalize">Toute les operation</h2> 
+         <hr>
+         <table mdbTable>
+                        <thead class="black white-text">
+                          <tr>
+                            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr mdbTableCol *ngFor="let el of elements">
+                            <th scope="row">{{el.id}}</th>
+                            <td>{{el.first}}</td>
+                            <td>{{el.last}}</td>
+                            <td>{{el.handle}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+                        
+
+        <!-- <li *ngFor="let Operation of operations" class="collection-item mt-4">
+                                                <span> N° de Compte{{Operation.numCompte_id}}</span>                                                                                                      
+                                                <span> Montant de opération: {{Operation.montantOperation}} </span>                                                                                                   
+                                                <span> Versement: {{Operation.versement} </span>
+                                                <span>Retrait: {{Operation.retrait}</span>
+                                                <span>Virement:{{Operation.virement}}</span>                                                    
+                                                <span>Date d'operation{{Operation.created_at}}</span>
+                                                <br/>
+                                                <span>Nouveau Solde: {{Operation.Compte.id}}</span>
+                                                <br/>        
+                                                <span>type d'operation{{Operation.opertaion_retrait.Operation_id}}</span>                                
+                                                
+                        <div class="text-right">
+                                <button mdbBtn (click)="deleteOperation(Operation)" size="sm" type="button sm" color="danger" mdbWavesEffect>
+                                                                <mdb-icon far icon="trash-alt"></mdb-icon>
+                                </button>
+                         </div>
+                                                
+         </li> -->
         </article>
+ </section>
+</mat-drawer-container>
+        
 </body>

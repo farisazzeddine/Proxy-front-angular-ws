@@ -9,10 +9,21 @@ import {FormControl, Validators} from '@angular/forms';
   templateUrl: './operations.component.html',
   styleUrls: ['./operations.component.scss']
 })
+
+
 export class OperationsComponent implements OnInit {
+  elements: any = [
+    {id: 1, first: 'Mark', last: 'Otto', handle: '@mdo'},
+    {id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat'},
+    {id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter'},
+  ];
+
+  headElements = ['ID', 'First', 'Last', 'Handle'];
+
   operations: Operation[] = [];
   isClosed:boolean=true;
   showFiller = false;
+  tOperation:boolean=true;
   isVirement:boolean=true;
   isRetrait:boolean=true;
   isVersement:boolean=true;
@@ -23,6 +34,9 @@ export class OperationsComponent implements OnInit {
   openSide(){
     this.isClosed=!this.isClosed;
     }
+    openOperation(){
+     this.tOperation=!this.tOperation;
+   }
     openViremet(){ this.isVirement=!this.isVirement;
       this.operation.virement=!this.isVirement
     }
@@ -39,14 +53,20 @@ export class OperationsComponent implements OnInit {
     
   }
 getOperation(){
-  this.operationService.getAll().subscribe(operations =>this.operations=operations);
+  this.operationService.getAll().
+  subscribe(operations =>this.operations=operations);
   
 }
 CreateOperation(){
-this.operationService.create(this.operation).subscribe(response=>console.log(response)
-  
+this.operationService.create(this.operation).
+ subscribe(response=>{
+ this.operation={
+  versement:false, virement:false, retrait:false, montantOperation:null, numCompte_id:null, virementVersCompte:null,
+  };
+  console.log(response)
+}
 )
-this.getOperation();
+
 }
 deleteOperation(Operation){
   this.operationService.delete(Operation).subscribe(()=>{

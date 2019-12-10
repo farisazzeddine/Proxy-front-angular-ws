@@ -31,6 +31,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+
+
 
 
 //auth settings
@@ -69,7 +73,9 @@ import { BeforeLoginService } from './service/before-login.service';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
+    MatTableModule
 
     
   ],
