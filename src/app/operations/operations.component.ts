@@ -12,13 +12,9 @@ import {FormControl, Validators} from '@angular/forms';
 
 
 export class OperationsComponent implements OnInit {
-  elements: any = [
-    {id: 1, first: 'Mark', last: 'Otto', handle: '@mdo'},
-    {id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat'},
-    {id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter'},
-  ];
+ 
 
-  headElements = ['ID', 'First', 'Last', 'Handle'];
+  headElements = ["#","La date","Numéro de compte","Type Opération", "Montant d'opération","Nouveau Solde","Paramétre"];
 
   operations: Operation[] = [];
   isClosed:boolean=true;
@@ -54,16 +50,25 @@ export class OperationsComponent implements OnInit {
   }
 getOperation(){
   this.operationService.getAll().
-  subscribe(operations =>this.operations=operations);
+  subscribe(operations =>{
+    this.operations=operations
+  // console.log(this.operations[0].opertaion_virement[0].virementVersCompte);
+    // console.log(this.operations);
+    })  
+
+   
+    
   
 }
 CreateOperation(){
 this.operationService.create(this.operation).
  subscribe(response=>{
  this.operation={
-  versement:false, virement:false, retrait:false, montantOperation:null, numCompte_id:null, virementVersCompte:null,
+  versement:false, virement:false, 
+  retrait:false, montantOperation:null,
+   numCompte_id:null, virementVersCompte:null,
   };
-  console.log(response)
+  this.getOperation();
 }
 )
 

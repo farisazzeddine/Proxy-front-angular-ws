@@ -68,7 +68,7 @@
                                                                            </div>
                                                                        <!-- Send button -->
                                                                        <div class="float-right">
-                                                                               <button mdbBtn color="indigo" f rounded="true"  class="my-4 waves-effect" mdbWavesEffect [disabled]="!OperationForm.valid" type="submit">Send</button>
+                                                                               <button mdbBtn color="indigo" f rounded="true"  class="my-4 waves-effect" mdbWavesEffect [disabled]="!OperationForm.valid" type="submit">Ajouter </button>
                                                                        </div> 
                                                           </form>
                                                                    {{operation | json}}
@@ -87,44 +87,36 @@
 <section *ngIf="!tOperation" class="text-center mx-5 mt-4">
         <article  class="col-md-12 col-lg-12">
          <h2 class="text-monospace text-capitalize">Toute les operation</h2> 
-         <hr>
-         <table mdbTable>
-                        <thead class="black white-text">
-                          <tr>
-                            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr mdbTableCol *ngFor="let el of elements">
-                            <th scope="row">{{el.id}}</th>
-                            <td>{{el.first}}</td>
-                            <td>{{el.last}}</td>
-                            <td>{{el.handle}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      
-                        
+         <hr class="mt-3">
+          <table mdbTable>
+                <thead class="black white-text">
+                        <tr>
+                        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                         </tr>
+                </thead>
+                 <tbody>
+                        <tr mdbTableCol *ngFor="let oper of operations">
+                            <th scope="row">{{oper.id}}</th>
+                            <td>{{oper.created_at}}</td>
+                            <td>{{oper.numCompte_id}}</td>
+                            <td>       
+                                 {{oper.versement}}
+                                 {{oper.retrait}}
+                                {{oper.virement}}
+                            </td>
+                            <td>{{oper.montantOperation}}</td>
+                            <td>{{oper.compte[0].solde}}</td>
+                            <td>
+                             <button mdbBtn (click)="deleteOperation(oper)" size="sm" type="button sm" color="danger" mdbWavesEffect>
+                                 <mdb-icon far icon="trash-alt"></mdb-icon>
+                                                        
+                               </button>
+                            </td>
+                           
+                        </tr>
+                </tbody>
+        </table> 
 
-        <!-- <li *ngFor="let Operation of operations" class="collection-item mt-4">
-                                                <span> N° de Compte{{Operation.numCompte_id}}</span>                                                                                                      
-                                                <span> Montant de opération: {{Operation.montantOperation}} </span>                                                                                                   
-                                                <span> Versement: {{Operation.versement} </span>
-                                                <span>Retrait: {{Operation.retrait}</span>
-                                                <span>Virement:{{Operation.virement}}</span>                                                    
-                                                <span>Date d'operation{{Operation.created_at}}</span>
-                                                <br/>
-                                                <span>Nouveau Solde: {{Operation.Compte.id}}</span>
-                                                <br/>        
-                                                <span>type d'operation{{Operation.opertaion_retrait.Operation_id}}</span>                                
-                                                
-                        <div class="text-right">
-                                <button mdbBtn (click)="deleteOperation(Operation)" size="sm" type="button sm" color="danger" mdbWavesEffect>
-                                                                <mdb-icon far icon="trash-alt"></mdb-icon>
-                                </button>
-                         </div>
-                                                
-         </li> -->
         </article>
  </section>
 </mat-drawer-container>
