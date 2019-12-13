@@ -4,7 +4,8 @@
           
           <div class="container white-text ml-.5 mt-2 mb-5" >
                   <h1 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h1>
-                  <small>Partie Clients</small>
+                  <strong>Partie Clients</strong>
+                  <hr>
                   <mat-list class="white-text text-center" role="list">
                           <mat-nav-list ><a mat-list-item (click)="ajouteClient()" class="white-text text-center">Ajouter des clients</a> </mat-nav-list>
                           <mat-nav-list ><a mat-list-item class="white-text text-center">les derniers clients</a> </mat-nav-list>       
@@ -24,20 +25,22 @@
   
       <!-- Partie d'ajoute les clients compte de type compte courant 
       ou compte epargne -->
-    <article *ngIf="!ajouteClientValue" class="col-md-12 pl-5 pr-5">
+    <article id="PartAdd" *ngIf="!ajouteClientValue" class="col-md-12 pl-5 pr-5">
       <div class="row text-center">
         <div class="col-md-12 mx-auto my-5">
           <div class="form-elegant">
-            <mdb-card>
+            <mdb-card >
               
                 <!--Header-->
+                <mdb-card-header class="unique-color white-text text-center py-1">
                 <div class="text-center">
-                  <h3 class="dark-grey-text mt-4 mb-5">
+                  <h3 class=" mt-4 mb-5">
                     <strong>Créer un(e) client(e):</strong>
                   </h3>
                 </div>
+              </mdb-card-header>
                 <!--Header-->
-                <form #clientForm=ngForm (ngSubmit)="createClient()" class="mx-3">
+                <form #clientForm=ngForm (ngSubmit)="createClient()" class="mx-3 pt-2">
                     <div class="md-form pb-3 col-11 mx-4">
                         <select [(ngModel)]="Newclient.agence" id="agence" name="agence"  class="browser-default custom-select ">
                             <option value="" disabled> Choisir Agence... </option>
@@ -117,7 +120,7 @@
                     <label for="solde">Solde de ouverture</label>
                   </div>
                   <div class="text-center  mb-3">
-                    <button mdbBtn (click)="createClient()" *ngIf="editCl" type="button" [disabled]="clientForm.valid"  gradient="blue" block="true" rounded="true"
+                    <button mdbBtn (click)="createClient()" *ngIf="editCl" type="button" [disabled]="clientForm.valid" color="indigo" block="true" rounded="true"
                       class="z-depth-1a waves-light" mdbWavesEffect>Ajouter</button>
                       <button (click)="updateClient()" *ngIf="!editCl"  type="button" mdbBtn color="light-green" block="true" rounded="true"
                       class="z-depth-1a waves-light" mdbWavesEffect>Modifier</button>          
@@ -133,58 +136,60 @@
     </article>
     <!-- la fin Partie d'ajoute les clients compte de type compte courant 
         ou compte epargne avec carte guichet -->
-    <article class="form-elegant pt-5 pl-3 pr-3">
-
+    <article class="form-elegant pb-5 pt-5 pl-3 pr-3">
       <mdb-card>
+      <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
+        <div class="text-center">
+          <h3 class="mt-4 mb-5">
+            <strong>les clients</strong>
+          </h3>
+        </div>
+      </mdb-card-header>
         <mdb-card-body class="mx-4">
           <div class="col-md-12">
-            <li *ngFor="let Client of clients" class="collection-item">
-              {{Client.id}}
-              <span>
-                {{Client.nom}}
-              </span>
-              <span>
-                {{Client.prenom}}
-              </span>
-              <br /> <span>
-                Adress:{{Client.adresse}}
-              </span>
-              <br /> <span>
-                CIN°: <em class="text-uppercase">{{Client.cin}}</em>
-              </span>
-              <br /><span>
-                ouverture de compte à: {{Client.ville}}
-              </span>
-              <br/>
-                <div class="text-uppercase">
-                  type de compte :
-                  <span *ngIf="(Client.compteCourant==true)">
-                  Compte Courant
-                </span>
-               
-                <span *ngIf="(Client.compteEpargne==true)">
-                    Compte Epargne
-                </span>
+            <table mdbTable class="text-monospace text-center text-capitalize mt-4">
+              <thead class="indigo white-text">
+                 <tr>
+                      <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+                 </tr>
+              </thead>
+               <tbody *ngFor="let Client of clients">
+                      <tr mdbTableCol>
+                          <th scope="row">{{Client.id}}</th>
+                          <td>
+                            <p *ngFor="let agence of agences">
+                              <small *ngIf="(Client.Agence_id===agence.id)"> {{agence.nomAgence}}</small>
+                            </p>
+                          </td>
+                          
+                          <td>
+                            <small> {{Client.nom}}  </small>
+                             <small>{{Client.prenom}}</small> 
+                          </td>
+                          <td>{{Client.cin}}</td>
+                          <td>
+                            {{Client.compte.numCompte}}
 
-                </div> 
-             <span>
-                ce compte créer dans la date : {{Client.created_at}}
-              </span>
-              <br /> <span>
-                RIB: {{Client.compte.numCompte}}
-              </span>
-              <br /> <span>
-                Solde: {{Client.compte.solde}} <em>DH</em>
-              </span>
-              <hr>
-              <div class="text-right">
-                  <button mdbBtn (click)="editClient(Client)" size="sm" type="button" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
-                  <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
-                  <button mdbBtn (click)="showClient(Client)"  size="sm" type="button" color="unique" mdbWavesEffect><mdb-icon fas icon="eye"></mdb-icon></button>
-                  
-              </div>
-              <hr>
-            </li>
+                          </td>
+                          <td>       
+                                 <span *ngIf="(Client.compteCourant==true)"> Compte Courant</span>
+                                 <span *ngIf="(Client.compteEpargne==true)">Compte Epargne</span>
+                          </td>
+                          <td>
+                             {{Client.compte.solde}}
+                          </td>
+                          <td>{{Client.created_at}}                    
+                            <hr>
+                            <div class="text-center">
+                                <button mdbBtn (click)="editClient(Client)" size="sm" type="button" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+                                <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                                <button mdbBtn (click)="showClient(Client)"  size="sm" type="button" color="unique" mdbWavesEffect><mdb-icon fas icon="eye"></mdb-icon></button>
+                            </div>
+                            <hr>
+                          </td>                      
+                      </tr>
+              </tbody>
+        </table> 
           </div>
         </mdb-card-body>
       </mdb-card>

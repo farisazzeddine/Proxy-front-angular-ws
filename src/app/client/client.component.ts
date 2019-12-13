@@ -13,10 +13,16 @@ import { AgenceService } from '../service/agence.service';
 export class ClientComponent implements OnInit {
   clients: Client[] = [];
   agences: Client[] = [];
+
   editCl:boolean=true;
   ajouteClientValue:boolean=true;
   labelPosition = 'after';
   isCompteCourant:boolean=true;
+  headElements = [
+    "#","Agence","Nom Et Prénom","CIN°","Numéro de compte",
+  "Type de Compte", "solde",
+  "La date"
+];
 Newclient={
     id:0,
     agence:'', name:'', prenom:'', adresse:'', cin:'', codePostal:'',
@@ -44,6 +50,7 @@ this.isCompteCourant=!true;
   
   ajouteClient(){
  this.ajouteClientValue=!this.ajouteClientValue;
+ this.Newclient;
   }
   getAgence(){
     this.agenceService.getAll()
@@ -60,6 +67,7 @@ this.isCompteCourant=!true;
   editClient(Client){
      this.Newclient=Client;
      this.editCl=false;
+     this.ajouteClientValue=false;
   }
   updateClient(){
 
