@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  
+}
 .form-elegant .font-small {
     font-size: 0.8rem;
   }
@@ -12,3 +17,13 @@
     -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
     box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
   }
+  #typeCarte,#agence{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+ #cartebancaire{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}

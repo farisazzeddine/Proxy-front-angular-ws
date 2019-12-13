@@ -13,9 +13,6 @@
 
                                         </mat-list>
                                 </div>
-                                <!-- <button (click)="showFiller = !showFiller" mdbWavesEffect type="button" size="sm" color="indigo" mdbBtn>
-                                <mdb-icon fas icon="angle-double-down"></mdb-icon>
-                            </button> -->
             </mat-drawer>
 
             <div class="example-sidenav-content container  col-md-12" (click)="drawer.toggle()">
@@ -27,49 +24,49 @@
                          <hr>
                     </div>
             </div> 
-            <mat-grid-list class="my-3 mx-3" cols="2" rowHeight="3:2">
+            <mat-grid-list class="my-3 mx-3" cols="2" rowHeight="3:2" autosize>
                         <mat-grid-tile>
-                                <mdb-card cols="2">
+                                <mdb-card cols="2" >
                                          <!-- Form -->
                                          <mdb-card-header class="indigo white-text text-center py-4">
-                                                                <h5><strong><mdb-icon fas icon="hand-holding-usd"></mdb-icon></strong></h5>
+                                                 <h5><strong><mdb-icon fas icon="hand-holding-usd"></mdb-icon></strong></h5>
                                          </mdb-card-header>
-                                                <form #OperationForm=ngForm (submit)="CreateOperation()" class="text-center">
-                                                        <div class="container col-md-12 mt-4">                                                                           
-                                                                <div class="col text-center text-capitalize">
-                                                                         <h1 [(ngModel)]="operation.virement" name="virement" *ngIf="!isVirement" >Virement sur compte</h1>
-                                                                         <h1 [(ngModel)]="operation.retrait" name="retrait" *ngIf="!isRetrait" >Retrait sur compte</h1>
-                                                                         <h1 [(ngModel)]="operation.versement" name="versement" *ngIf="!isVersement" >Versement sur compte</h1>                                         
+                                                <form #OperationForm=ngForm (ngSubmit)="CreateOperation()" class="text-center">
+                                                        <div class="container col-md-12 mt-5">                                                                           
+                                                                <div class="col text-center text-capitalize" required>
+                                                                         <h1 [(ngModel)]="operation.virement" name="virement" *ngIf="!isVirement" required>Virement sur compte</h1>
+                                                                         <h1 [(ngModel)]="operation.retrait" name="retrait" *ngIf="!isRetrait" required>Retrait sur compte</h1>
+                                                                         <h1 [(ngModel)]="operation.versement" name="versement" *ngIf="!isVersement" required>Versement sur compte</h1>                                         
                                                                  </div>
                                                         </div>
                                                          <div class="form-row mx-3">
                                                                 <div class="col">
                                                                                                      <!-- le numero de compte effectue l'operation -->
                                                                      <div class="md-form">
-                                                                             <input [(ngModel)]="operation.numCompte_id" name="numCompte_id" type="text"  id="materialRegisterFormFirstName"  class="form-control"  mdbInput>
+                                                                             <input [(ngModel)]="operation.numCompte_id" name="numCompte_id" type="text"  id="materialRegisterFormFirstName"  class="form-control"  mdbInput required>
                                                                              <label  for="materialRegisterFormFirstName">Le numéro de compte</label>
                                                                      </div>
                                                                  </div>
                                                          <div class="col">
                                                                                            <!-- Montant d'operation -->
                                                                  <div class="md-form">
-                                                                         <input [(ngModel)]="operation.montantOperation" name="montantOperation" type="number"  id="materialRegisterFormLastName"  class="form-control"  mdbInput>
+                                                                         <input [(ngModel)]="operation.montantOperation" name="montantOperation" type="number"  id="materialRegisterFormLastName"  class="form-control"  mdbInput required>
                                                                          <label for="materialRegisterFormLastName">Montant D'operation</label>
                                                                  </div>
                                                          </div>
                                           
                                                                   </div>
                                                                           <!-- le compte benficie de virement-->
-                                                                          <div class="form-row mx-3">
+                                                                          <div class="form-row mx-3 text-center">
                                                                               <div *ngIf="!isVirement" class="md-form col-md-12">
-                                                                                   <input [(ngModel)]="operation.virementVersCompte" name="virementVersCompte" type="text"  id="materialContactFormEmail" class="form-control" mdbInput>          
+                                                                                   <input [(ngModel)]="operation.virementVersCompte" name="virementVersCompte" type="text"  id="materialContactFormEmail" class="form-control" mdbInput required>          
                                                                                    <label for="materialContactFormEmail">Virement Vers le Compte</label>
                                                                                </div>
+                                                                               <div class="col">
+                                                                                       <button mdbBtn color="indigo"  size="lg"  class="my-4 waves-effect" mdbWavesEffect [disabled]="!OperationForm.valid" type="submit">Ajouter </button>
+                                                                               </div> 
                                                                            </div>
                                                                        <!-- Send button -->
-                                                                       <div class="float-right">
-                                                                               <button mdbBtn color="indigo" f rounded="true"  class="my-4 waves-effect" mdbWavesEffect [disabled]="!OperationForm.valid" type="submit">Ajouter </button>
-                                                                       </div> 
                                                           </form>
                                                                    {{operation | json}}
                                                   <!-- Form -->
@@ -88,11 +85,11 @@
         <article  class="col-md-12 col-lg-12">
          <h2 class="text-monospace text-capitalize">Toute les operation</h2> 
          <hr class="mt-3">
-          <table mdbTable>
-                <thead class="black white-text">
-                        <tr>
-                        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-                         </tr>
+          <table mdbTable class="text-monospace text-capitalize">
+                <thead class="indigo white-text">
+                   <tr>
+                        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+                   </tr>
                 </thead>
                  <tbody>
                         <tr mdbTableCol *ngFor="let oper of operations">
@@ -100,17 +97,16 @@
                             <td>{{oper.created_at}}</td>
                             <td>{{oper.numCompte_id}}</td>
                             <td>       
-                                 {{oper.versement}}
-                                 {{oper.retrait}}
-                                {{oper.virement}}
+                               <span *ngIf="(oper.versement==true)"> Versement</span>
+                               <span *ngIf="(oper.retrait==true)"> Retrait</span>
+                               <span *ngIf="(oper.virement==true)"> Virement</span>
                             </td>
                             <td>{{oper.montantOperation}}</td>
                             <td>{{oper.compte[0].solde}}</td>
                             <td>
-                             <button mdbBtn (click)="deleteOperation(oper)" size="sm" type="button sm" color="danger" mdbWavesEffect>
-                                 <mdb-icon far icon="trash-alt"></mdb-icon>
-                                                        
-                               </button>
+                                 <button mdbBtn (click)="deleteOperation(oper)" size="sm" type="button sm" color="danger" mdbWavesEffect>
+                                     <mdb-icon far icon="trash-alt"></mdb-icon>                        
+                                </button>
                             </td>
                            
                         </tr>

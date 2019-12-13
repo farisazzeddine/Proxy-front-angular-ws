@@ -14,19 +14,36 @@ export class ClientComponent implements OnInit {
   clients: Client[] = [];
   agences: Client[] = [];
   editCl:boolean=true;
+  ajouteClientValue:boolean=true;
+  labelPosition = 'after';
+  isCompteCourant:boolean=true;
 Newclient={
     id:0,
     agence:'', name:'', prenom:'', adresse:'', cin:'', codePostal:'',
-    ville:'', telephone:'', compteEpargne:'', compteCourant:'',
+    ville:'', telephone:'', compteEpargne:false, compteCourant:false,
     solde:'', cartebancaire:'', typeCarte:''
 
   };
-  compteCourant='Compte courant';
+  
   constructor(private clientService : ClientService, private agenceService:AgenceService) { }
 
   ngOnInit() {
     this.getClient();
     this.  getAgence();
+  }
+  openCoumpteCourant(){
+this.Newclient.compteCourant=true,
+this.Newclient.compteEpargne=false,
+this.isCompteCourant=!true;
+  }
+  openCoumpteEpargne(){
+    this.Newclient.compteEpargne=true,
+    this.Newclient.compteCourant=false,
+    this.isCompteCourant=!false;
+  }
+  
+  ajouteClient(){
+ this.ajouteClientValue=!this.ajouteClientValue;
   }
   getAgence(){
     this.agenceService.getAll()
@@ -43,6 +60,9 @@ Newclient={
   editClient(Client){
      this.Newclient=Client;
      this.editCl=false;
+  }
+  updateClient(){
+
   }
   createClient(){
     this.clientService.create(this.Newclient).subscribe(

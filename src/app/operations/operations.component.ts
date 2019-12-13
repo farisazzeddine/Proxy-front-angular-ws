@@ -14,16 +14,24 @@ import {FormControl, Validators} from '@angular/forms';
 export class OperationsComponent implements OnInit {
  
 
-  headElements = ["#","La date","Numéro de compte","Type Opération", "Montant d'opération","Nouveau Solde","Paramétre"];
+  headElements = [
+    "#","La date","Numéro de compte",
+  "Type Opération", "Montant d'opération",
+  "Nouveau Solde","Paramétre"
+];
 
   operations: Operation[] = [];
+
   isClosed:boolean=true;
   showFiller = false;
+
   tOperation:boolean=true;
   isVirement:boolean=true;
   isRetrait:boolean=true;
+
   isVersement:boolean=true;
   public loggedIn:boolean;
+
   public operation={
     versement:false, virement:false, retrait:false, montantOperation:null, numCompte_id:null, virementVersCompte:null,
     };
@@ -33,13 +41,16 @@ export class OperationsComponent implements OnInit {
     openOperation(){
      this.tOperation=!this.tOperation;
    }
-    openViremet(){ this.isVirement=!this.isVirement;
+    openViremet(){ 
+      this.isVirement=!this.isVirement;
       this.operation.virement=!this.isVirement
     }
-    opentVersement(){this.isVersement=!this.isVersement;
+    opentVersement(){
+      this.isVersement=!this.isVersement;
       this.operation.versement=!this.isVersement
     } 
-    opentRetrait(){this.isRetrait=!this.isRetrait,
+    opentRetrait(){
+      this.isRetrait=!this.isRetrait,
       this.operation.retrait=!this.isRetrait
     }
   constructor(private operationService: OperationService) { }
