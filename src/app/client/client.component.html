@@ -8,7 +8,7 @@
                   <hr>
                   <mat-list class="white-text text-center" role="list">
                           <mat-nav-list ><a mat-list-item (click)="ajouteClient()" class="white-text text-center">Ajouter des clients</a> </mat-nav-list>
-                          <mat-nav-list ><a mat-list-item class="white-text text-center">les derniers clients</a> </mat-nav-list>       
+                          <mat-nav-list ><a mat-list-item (click)="(ajouteClient() && !ajouteClient())" class="white-text text-center">les derniers clients</a> </mat-nav-list>       
                   </mat-list>
           </div>
          
@@ -42,44 +42,43 @@
                 <!--Header-->
                 <form #clientForm=ngForm (ngSubmit)="createClient()" class="mx-3 pt-2">
                     <div class="md-form pb-3 col-11 mx-4">
-                        <select [(ngModel)]="Newclient.agence" id="agence" name="agence"  class="browser-default custom-select ">
-                            <option value="" disabled> Choisir Agence... </option>
-                          <option selected></option>
-                          <option *ngFor="let agence of agences" value={{agence.id}}>{{agence.nomAgence}}</option>
+                        <select [(ngModel)]="Newclient.agence" id="agence" name="agence"  class="browser-default custom-select" required>
+                          <option  value="" selected disabled> Choisir Agence... </option>
+                          <option *ngFor="let agence of agences" [value]="agence.id" >{{agence.nomAgence}}</option>
                         </select>
                       </div>
                       <div class="row">
                         <div class="md-form col-5 mx-4">
-                          <input [(ngModel)]="Newclient.name" type="text" id="name" class="form-control" name="name" mdbInput>
-                          <label for="name">Nom</label>
+                          <input [(ngModel)]="Newclient.nom" type="text" id="nom" class="form-control" name="nom" mdbInput required>
+                          <label for="nom">Nom</label>
                         </div>
                         <div class="md-form col-5 mx-4">
-                          <input [(ngModel)]="Newclient.prenom" type="text" id="prenom" class="form-control" name="prenom" mdbInput>
+                          <input [(ngModel)]="Newclient.prenom" type="text" id="prenom" class="form-control" name="prenom" mdbInput required>
                           <label for="prenom">Prénom</label>
                         </div>
                       </div>
 
                   <div class="md-form pb-3 col-11 mx-4">
-                    <input [(ngModel)]="Newclient.adresse" type="text" id="adresse" name="adresse" class="form-control" mdbInput>
+                    <input [(ngModel)]="Newclient.adresse" type="text" id="adresse" name="adresse" class="form-control" mdbInput required>
                     <label for="adresse">L'adresse</label>
                   </div>
                   <div class="row pb-3">
                     <div class="md-form col-5 mx-4">
-                      <input [(ngModel)]="Newclient.cin" type="text" id="cin" name="cin" class="form-control" mdbInput>
+                      <input [(ngModel)]="Newclient.cin" type="text" id="cin" name="cin" class="form-control" mdbInput required>
                       <label for="cin">Numero de CIN°</label>
                     </div>
                     <div class="md-form col-5 mx-4">
-                      <input [(ngModel)]="Newclient.codePostal" type="number" id="codePostal" name="codePostal" class="form-control" mdbInput>
+                      <input [(ngModel)]="Newclient.codePostal" type="number" id="codePostal" name="codePostal" class="form-control" mdbInput required>
                       <label for="codePostal">Code Postal</label>
                     </div>
                   </div>
                   <div class="row pb-3">
                     <div class="md-form col-5 mx-4">
-                      <input [(ngModel)]="Newclient.ville" type="text" id="ville" name="ville" class="form-control" mdbInput>
+                      <input [(ngModel)]="Newclient.ville" type="text" id="ville" name="ville" class="form-control" mdbInput required>
                       <label for="ville">Ville</label>
                     </div>
                     <div class="md-form col-5 mx-4">
-                        <input [(ngModel)]="Newclient.telephone" type="text" id="telephone" name="telephone" class="form-control" mdbInput>
+                        <input [(ngModel)]="Newclient.telephone" type="text" id="telephone" name="telephone" class="form-control" mdbInput required>
                         <label for="telephone">Téléphone</label>
                     </div>
                     
@@ -89,8 +88,8 @@
                           <h3 class="example-margin">Type  de compte</h3>
                           <br>
                           <mat-radio-group>
-                            <mat-radio-button (click)="openCoumpteEpargne()" [(ngModel)]="Newclient.compteEpargne" name="compteEpargne" id="compteEpargne" class="mx-5 px-4" value="before">Compte Epargne</mat-radio-button>
-                            <mat-radio-button (click)="openCoumpteCourant()" [(ngModel)]="Newclient.compteCourant" name="compteCourant" id="compteCourant"  class="mx-5 px-4" value="after">Compte Courant</mat-radio-button>
+                            <mat-radio-button (click)="openCoumpteEpargne()" [(ngModel)]="Newclient.compteEpargne" name="compteEpargne" id="compteEpargne" class="mx-5 px-4" [value]="Newclient.compteEpargne" required>Compte Epargne</mat-radio-button>
+                            <mat-radio-button (click)="openCoumpteCourant()" [(ngModel)]="Newclient.compteCourant" name="compteCourant" id="compteCourant"  class="mx-5 px-4" [value]="Newclient.compteCourant" required>Compte Courant</mat-radio-button>
                           </mat-radio-group>
                         </section>                  
                   </div>
@@ -107,7 +106,7 @@
                       <div class="md-form col-5 mx-4 pb-3">
                           <select [(ngModel)]="Newclient.typeCarte" id="typeCarte" name="typeCarte" class="browser-default custom-select">
                             <option value="" disabled>Type de carte bancaire</option>
-                            <option value=" " disabled selected ></option>
+                            <option [value]="Newclient.typeCarte" disabled selected ></option>
                             <option value="MasterCard">Master Card</option>
                             <option value="Visa">Visa</option>
                           </select>
@@ -120,7 +119,7 @@
                     <label for="solde">Solde de ouverture</label>
                   </div>
                   <div class="text-center  mb-3">
-                    <button mdbBtn (click)="createClient()" *ngIf="editCl" type="button" [disabled]="clientForm.valid" color="indigo" block="true" rounded="true"
+                    <button mdbBtn (click)="createClient()" *ngIf="editCl" type="button" [disabled]="!clientForm.valid" color="indigo" block="true" rounded="true"
                       class="z-depth-1a waves-light" mdbWavesEffect>Ajouter</button>
                       <button (click)="updateClient()" *ngIf="!editCl"  type="button" mdbBtn color="light-green" block="true" rounded="true"
                       class="z-depth-1a waves-light" mdbWavesEffect>Modifier</button>          
@@ -140,12 +139,17 @@
       <mdb-card>
       <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
         <div class="text-center">
-          <h3 class="mt-4 mb-5">
+          <h3 class="mt-4 mb-2">
             <strong>les clients</strong>
           </h3>
         </div>
       </mdb-card-header>
         <mdb-card-body class="mx-4">
+          <div class="md-form mt-3 text-monospace  text-capitalize">
+            <input mdbInput (keyup)="searcheClient()" type="text" name="searcheBar" [(ngModel)]="searchText" id="searcheBar" class="form-control">
+            <label for="searcheBar" class="text-monospace text-center text-lowercase">Entrez-Vous CIN°....</label>
+            <p>CIN° CLient(e) :  {{searchText}} !</p>
+          </div>
           <div class="col-md-12">
             <table mdbTable class="text-monospace text-center text-capitalize mt-4">
               <thead class="indigo white-text">
@@ -153,7 +157,7 @@
                       <th *ngFor="let head of headElements" scope="col">{{head}}</th>
                  </tr>
               </thead>
-               <tbody *ngFor="let Client of clients">
+               <tbody *ngFor="let Client of serClient">
                       <tr mdbTableCol>
                           <th scope="row">{{Client.id}}</th>
                           <td>
@@ -166,8 +170,8 @@
                             <small> {{Client.nom}}  </small>
                              <small>{{Client.prenom}}</small> 
                           </td>
-                          <td>{{Client.cin}}</td>
-                          <td>
+                          <td class="text-lowercase">{{Client.cin}}</td>
+                          <td class="text-lowercase">
                             {{Client.compte.numCompte}}
 
                           </td>
@@ -182,14 +186,14 @@
                             <hr>
                             <div class="text-center">
                                 <button mdbBtn (click)="editClient(Client)" size="sm" type="button" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
-                                <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
                                 <button mdbBtn (click)="showClient(Client)"  size="sm" type="button" color="unique" mdbWavesEffect><mdb-icon fas icon="eye"></mdb-icon></button>
+                                <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
                             </div>
                             <hr>
                           </td>                      
                       </tr>
               </tbody>
-        </table> 
+            </table> 
           </div>
         </mdb-card-body>
       </mdb-card>

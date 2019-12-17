@@ -19,6 +19,7 @@ export class TokenService {
   //  console.log(this.isValid());
    
   }
+  
   set(token){
    return localStorage.setItem('token',token)
   }
