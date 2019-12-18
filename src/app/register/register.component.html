@@ -1,6 +1,21 @@
 <section id="backGroundLogin">
-  <article class="container-fluid col-md-8 p-5">
-    <mdb-card>
+
+          
+    <div class="sidenav text-center black-text  ml-.5 mt-2 mb-5" >
+      <mdb-card>
+            <h1 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h1>
+            <strong>Partie Clients</strong>
+            <hr>
+            <mat-list class="text-center" role="list">
+                    <mat-nav-list class="text-center" ><a mat-list-item (click)="addUser()" class=" text-center">Ajouter des clients</a> </mat-nav-list>
+                    <mat-nav-list class="text-center" ><a mat-list-item (click)="showAgent()" class=" text-center">les derniers clients</a> </mat-nav-list>       
+            </mat-list>
+      </mdb-card>
+    </div>
+   
+
+  <article class="container-fluid col-md-10 p-5">
+    <mdb-card *ngIf="isAdd">
       <div class="row">
 
         <!-- Default form register -->
@@ -58,20 +73,24 @@
 
             <!-- choix de conseiller au gerant -->
             <div class="row">
-                <div class="col-md-6 mx-auto d-flex justify-content-center">
-                    <div class="form-check">
-                      <input [(ngModel)]="form.is_gerant" type="radio" name="is_gerant" class="form-check-input"
-                        id="gerant" name="gerant" value="1" mdbInput >
-                      <label class="form-check-label" for="gerant">Je suis un(e) Gerant (e)</label>
-                    </div>
-                  </div>
+               <div class="col-md-6 mx-auto d-flex justify-content-center">
+                 <div class="form-check">
+                  <mat-radio-group>
+                    <mat-radio-button (click)="form.is_conseiller = 1" [(ngModel)]="form.is_conseiller" name="is_conseiller" id="is_conseiller" class="mx-5 px-4" [value]="form.is_conseiller" >Compte Epargne</mat-radio-button>
+                    <mat-radio-button (click)="form.is_gerant = 1" [(ngModel)]="form.is_gerant" name="is_gerant" id="is_gerant"  class="mx-5 px-4" [value]="form.is_gerant" >Compte Courant</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+              <!-- <input [(ngModel)]="form.is_gerant" type="radio" name="is_gerant" class="form-check-input"
+                id="gerant" name="gerant" value="1" mdbInput >
+              <label class="form-check-label" for="gerant">Je suis un(e) Gerant (e)</label>
               <div class="col-md-6 mx-auto d-flex justify-content-center">
                 <div class="form-check">
                   <input [(ngModel)]="form.is_conseiller" type="radio" name="is_conseiller" class="form-check-input"
                     id="conseiller" name="conseiller" value="1" mdbInput >
                   <label class="form-check-label" for="conseiller">Je suis un(e) Agent (e)</label>
                 </div>
-              </div>
+              </div>  -->
             </div>
             <!-- Sign up button -->
             <button mdbBtn color="dark" block="true" class="my-4" [disabled]="!registerForm.valid"
@@ -88,5 +107,82 @@
       </div>
       <!-- Default form register -->
     </mdb-card>
+    <mdb-card class="mt-5" *ngIf="isAgent">
+      <h2 class="text-monospace text-center text-capitalize mt-3"> les Gerants</h2>
+      <hr>
+    <div class="col-md-12 pt-3 table-responsive">
+      <table mdbTable class="text-monospace text-center text-capitalize mt-4">
+        <thead class="indigo white-text">
+           <tr>
+                <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+           </tr>
+        </thead>
+         <tbody *ngFor="let gerant of gerants">
+                <tr mdbTableCol>
+                    <th scope="row">{{gerant.id}}</th>                   
+                    <td>
+                      <small> {{gerant.name}}  </small>
+                       <small>{{gerant.prenom}}</small> 
+                    </td>
+                    <td class="text-lowercase">{{gerant.cin}}</td>
+                    <td class="text-lowercase">
+                      {{gerant.email}}
+                    </td>
+                    <td>
+                       {{gerant.cin}}
+                    </td>
+                    <td>{{gerant.created_at}}                    
+                      <hr>
+                      <!-- <div class="text-center">
+                          <button mdbBtn (click)="editClient(Client)" size="sm" type="button" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+                          <button mdbBtn (click)="showClient(Client)"  size="sm" type="button" color="unique" mdbWavesEffect><mdb-icon fas icon="eye"></mdb-icon></button>
+                          <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                      </div> -->
+                      <hr>
+                    </td>                      
+                </tr>
+        </tbody>
+      </table> 
+    </div>
+  </mdb-card>
+  <mdb-card class="mt-5">
+    <h2 class="text-monospace text-center text-capitalize mt-3"> les Agents</h2>
+    <hr>
+    <div class="col-md-12 pt-3 table-responsive">
+      <table mdbTable class="text-monospace text-center text-capitalize mt-4">
+        <thead class="indigo white-text">
+           <tr>
+                <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+           </tr>
+        </thead>
+         <tbody *ngFor="let agent of agents">
+                <tr mdbTableCol>
+                    <th scope="row">{{agent.id}}</th>                   
+                    <td>
+                      <small> {{agent.name}}  </small>
+                       <small>{{agent.prenom}}</small> 
+                    </td>
+                    <td class="text-lowercase">{{agent.cin}}</td>
+                    <td class="text-lowercase">
+                      {{agent.email}}
+                    </td>
+                    <td>
+                       {{agent.cin}}
+                    </td>
+                    <td>{{agent.created_at}}                    
+                      <hr>
+                      <!-- <div class="text-center">
+                          <button mdbBtn (click)="editClient(Client)" size="sm" type="button" color="indigo" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+                          <button mdbBtn (click)="showClient(Client)"  size="sm" type="button" color="unique" mdbWavesEffect><mdb-icon fas icon="eye"></mdb-icon></button>
+                          <button mdbBtn (click)="deleteClient(Client)"  size="sm" type="button" color="danger" mdbWavesEffect><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                      </div> -->
+                      <hr>
+                    </td>                      
+                </tr>
+        </tbody>
+      </table> 
+    </div>
+  </mdb-card>
   </article>
+  
 </section>

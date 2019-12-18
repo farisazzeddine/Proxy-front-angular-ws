@@ -41,6 +41,8 @@ import {MatTableModule} from '@angular/material/table';
 import { AuthService } from './service/auth.service';
 import { AfterLoginService } from './service/after-login.service';
 import { BeforeLoginService } from './service/before-login.service';
+import { UserConseillerService } from './service/user-conseiller.service';
+import { UserGerantService } from './service/user-gerant.service';
 
 
 
@@ -89,6 +91,8 @@ import { BeforeLoginService } from './service/before-login.service';
     AuthService,
     AfterLoginService,
     BeforeLoginService,
+    UserConseillerService,
+    UserGerantService
     
   ],
   bootstrap: [AppComponent],
