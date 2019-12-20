@@ -26,10 +26,10 @@ export class OperationsComponent implements OnInit {
   showFiller = false;
 
   tOperation:boolean=true;
-  isVirement:boolean=true;
-  isRetrait:boolean=true;
+  isVirement:boolean=false;
+  isRetrait:boolean=false;
 
-  isVersement:boolean=true;
+  isVersement:boolean=false;
   public loggedIn:boolean;
 
   public operation={
@@ -40,18 +40,25 @@ export class OperationsComponent implements OnInit {
     }
     openOperation(){
      this.tOperation=!this.tOperation;
+    
    }
     openViremet(){ 
       this.isVirement=!this.isVirement;
-      this.operation.virement=!this.isVirement
+      this.operation.virement=!this.isVirement;
+      this.isVersement=false;
+      this.isRetrait=false;
     }
     opentVersement(){
       this.isVersement=!this.isVersement;
-      this.operation.versement=!this.isVersement
+      this.operation.versement=!this.isVersement;
+      this.isVirement=false;
+      this.isRetrait=false;
     } 
     opentRetrait(){
       this.isRetrait=!this.isRetrait,
       this.operation.retrait=!this.isRetrait
+      this.isVersement=false;
+      this.isVirement=false;
     }
   constructor(private operationService: OperationService) { }
 

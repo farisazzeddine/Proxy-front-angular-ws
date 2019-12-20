@@ -1,7 +1,7 @@
 <body class="container-fluid col-md-12">
         
     <mat-drawer-container class="example-container" autosize>
-           <mat-drawer #drawer class="example-sidenav mdb-color white-text text-center" mode="side">
+        <mat-drawer #drawer class="example-sidenav mdb-color white-text text-center" mode="side">
 
                                 <div class="container white-text ml-.5 my-5">
 
@@ -13,9 +13,9 @@
 
                                         </mat-list>
                                 </div>
-            </mat-drawer>
+        </mat-drawer>
 
-            <div class="example-sidenav-content container  col-md-12" (click)="drawer.toggle()">
+        <div class="example-sidenav-content container  col-md-12" (click)="drawer.toggle()">
                     <button mdbWavesEffect type="button" size="sm" color="indigo" mdbBtn>
                             <mdb-icon fas icon="align-justify"></mdb-icon>
                     </button>
@@ -23,20 +23,19 @@
                         <h3 class="text-monospace text-capitalize">ajouter une opération </h3>
                          <hr>
                     </div>
-            </div> 
-            <mat-grid-list class="my-3 mx-3" cols="2" rowHeight="3:2" autosize>
-                        <mat-grid-tile>
-                                <mdb-card cols="2" >
-                                         <!-- Form -->
+        </div> 
+            
+                                <mdb-card class="col-md-8 offset-md-2" >
+                                         <!-- Form operation -->
                                          <mdb-card-header class="indigo white-text text-center py-4">
                                                  <h5><strong><mdb-icon fas icon="hand-holding-usd"></mdb-icon></strong></h5>
                                          </mdb-card-header>
                                                 <form #OperationForm=ngForm (ngSubmit)="CreateOperation()" class="text-center">
                                                         <div class="container col-md-12 mt-5">                                                                           
                                                                 <div class="col text-center text-capitalize" required>
-                                                                         <h1 [(ngModel)]="operation.virement" name="virement" *ngIf="!isVirement" required>Virement sur compte</h1>
-                                                                         <h1 [(ngModel)]="operation.retrait" name="retrait" *ngIf="!isRetrait" required>Retrait sur compte</h1>
-                                                                         <h1 [(ngModel)]="operation.versement" name="versement" *ngIf="!isVersement" required>Versement sur compte</h1>                                         
+                                                                         <h1 [(ngModel)]="operation.virement" name="virement" *ngIf="isVirement" required>Virement sur compte</h1>
+                                                                         <h1 [(ngModel)]="operation.retrait" name="retrait" *ngIf="isRetrait" required>Retrait sur compte</h1>
+                                                                         <h1 [(ngModel)]="operation.versement" name="versement" *ngIf="isVersement" required>Versement sur compte</h1>                                         
                                                                  </div>
                                                         </div>
                                                          <div class="form-row mx-3">
@@ -67,19 +66,14 @@
                                                                                </div> 
                                                                            </div>
                                                                        <!-- Send button -->
+                                                                       {{operation | json}}
                                                           </form>
-                                                                   {{operation | json}}
                                                   <!-- Form -->
                                                                                            
                                         </mdb-card>
-                        </mat-grid-tile>
-                        <mat-grid-tile (click)="drawer.toggle()">
-                                        <div class="col-md-6 mx-2 my-2  text-center">
-                                                 <img width="350"  src="assets/img/Money_SVG.svg" alt="Second slide"> 
-                                        </div>                      
-                        </mat-grid-tile>
+                       
 
-           </mat-grid-list>
+          
           <!-- partie affichage -->     
 <section *ngIf="!tOperation" class="text-center mx-5 mt-4">
         <article  class="col-md-12 col-lg-12">

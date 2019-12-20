@@ -33,12 +33,15 @@ export class LoginComponent implements OnInit {
     .subscribe(
      data => this.handleResponse(data),
      
+     
      error=>  this.handleError(error)
      
     );
 
   }
   handleResponse(data){
+    console.log('this is my data', data);
+    localStorage.setItem('user_info',JSON.stringify(data))
     this.tokenService.handleToken(data.access_token);
     this.Auth.changeAuthStatus(true);
     this.router.navigateByUrl('/gerant/configuration');

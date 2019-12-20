@@ -1,21 +1,18 @@
 
-  <mat-drawer-container class="container col-md-12 col-lg-12 text-monospace" autosize>
+  <mat-drawer-container class="container col-md-12 col-lg-12 text-monospace" id="backGroundLogin" autosize>
       <mat-drawer #drawer class="example-sidenav mdb-color white-text text-center" mode="side">
-          
-          <div class="container white-text ml-.5 mt-2 mb-5" >
-                  <h1 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h1>
+          <div class="container text-monospace white-text ml-.5 mt-2 mb-5" >
+              <h1 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h1>
                   <strong>Partie Clients</strong>
-                  <hr>
+                     <hr>
                   <mat-list class="white-text text-center" role="list">
                           <mat-nav-list ><a mat-list-item (click)="ajouteClient()" class="white-text text-center">Ajouter des clients</a> </mat-nav-list>
                           <mat-nav-list ><a mat-list-item (click)="(ajouteClient() && !ajouteClient())" class="white-text text-center">les derniers clients</a> </mat-nav-list>       
                   </mat-list>
           </div>
-         
       </mat-drawer>
-
       <div>
-          <div class="col-md-12" (click)="drawer.toggle()">
+          <div class="col-md-12  white" (click)="drawer.toggle()">
           <button mdbWavesEffect type="button" size="sm" color="indigo" mdbBtn >
               <mdb-icon fas icon="align-justify"></mdb-icon>
           </button>

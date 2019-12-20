@@ -1,7 +1,12 @@
 *{
-  margin: 0;
+ 
   padding: 0;
   
+}
+#backGroundLogin {
+    background:url(../../assets/img/Dalmatian-Spots.svg);
+    background-size: cover;
+    height:100vh;
 }
 .form-elegant .font-small {
     font-size: 0.8rem;

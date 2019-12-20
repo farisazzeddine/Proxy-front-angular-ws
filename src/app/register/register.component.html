@@ -1,20 +1,27 @@
-<section id="backGroundLogin">
 
-          
-    <div class="sidenav text-center black-text  ml-.5 mt-2 mb-5" >
-      <mdb-card>
-            <h1 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h1>
-            <strong>Partie Clients</strong>
+<mat-drawer-container class="container col-md-12 col-lg-12 text-monospace" id="backGroundLogin" autosize>
+   <mat-drawer #drawer class="example-sidenav mdb-color white-text text-center" mode="side">     
+         <div class="container text-monospace white-text ml-.5 px-3 mt-2 mb-5" >
+            <h2 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h2>
+           <p><strong>Partie Adminstration</strong></p>
+           
             <hr>
-            <mat-list class="text-center" role="list">
-                    <mat-nav-list class="text-center" ><a mat-list-item (click)="addUser()" class=" text-center">Ajouter des clients</a> </mat-nav-list>
-                    <mat-nav-list class="text-center" ><a mat-list-item (click)="showAgent()" class=" text-center">les derniers clients</a> </mat-nav-list>       
-            </mat-list>
-      </mdb-card>
+            <mat-list class="white-text text-center" role="list">
+                    <mat-nav-list class="text-center"><a mat-list-item (click)="addUser()" class=" text-center">Ajouter des clients</a> </mat-nav-list>
+                    <mat-nav-list class="text-center"><a mat-list-item (click)="showAgent()" class=" text-center">les derniers clients</a> </mat-nav-list>       
+            </mat-list>    
     </div>
-   
+</mat-drawer>
+<div>
+  <div class="col-md-12  white" (click)="drawer.toggle()">
+  <button mdbWavesEffect type="button" size="sm" color="indigo" mdbBtn >
+      <mdb-icon fas icon="align-justify"></mdb-icon>
+  </button>
+  <h1 class="text-uppercase font-weight-bold text-center"> portail client </h1>
+   <hr> 
+</div>
 
-  <article class="container-fluid col-md-10 p-5">
+  <article class="container-fluid col-md-12 p-5">
     <mdb-card *ngIf="isAdd">
       <div class="row">
 
@@ -108,8 +115,14 @@
       <!-- Default form register -->
     </mdb-card>
     <mdb-card class="mt-5" *ngIf="isAgent">
-      <h2 class="text-monospace text-center text-capitalize mt-3"> les Gerants</h2>
-      <hr>
+      <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
+        <div class="text-center">
+          <h3 class=" text-monospace text-center text-capitalize mt-4 mb-2">
+            <strong>les Gerants</strong>
+          </h3>
+          <hr>
+        </div>
+      </mdb-card-header>
     <div class="col-md-12 pt-3 table-responsive">
       <table mdbTable class="text-monospace text-center text-capitalize mt-4">
         <thead class="indigo white-text">
@@ -117,7 +130,7 @@
                 <th *ngFor="let head of headElements" scope="col">{{head}}</th>
            </tr>
         </thead>
-         <tbody *ngFor="let gerant of gerants">
+        <tbody *ngFor="let gerant of gerants">
                 <tr mdbTableCol>
                     <th scope="row">{{gerant.id}}</th>                   
                     <td>
@@ -146,8 +159,14 @@
     </div>
   </mdb-card>
   <mdb-card class="mt-5">
-    <h2 class="text-monospace text-center text-capitalize mt-3"> les Agents</h2>
-    <hr>
+    <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
+      <div class="text-center">
+        <h3 class=" text-monospace text-center text-capitalize mt-4 mb-2">
+          <strong>les Agents</strong>
+        </h3>
+        <hr>
+      </div>
+    </mdb-card-header>
     <div class="col-md-12 pt-3 table-responsive">
       <table mdbTable class="text-monospace text-center text-capitalize mt-4">
         <thead class="indigo white-text">
@@ -184,5 +203,5 @@
     </div>
   </mdb-card>
   </article>
-  
-</section>
+</div>  
+</mat-drawer-container>

@@ -1,6 +1,12 @@
-section {
+*{
+    
+    padding: 0;
+
+}
+#backGroundLogin {
     background:url(../../assets/img/Dalmatian-Spots.svg);
     background-size: cover;
+    height:100vh;
 }
 .ng-invalid:not(form){
     border-bottom:5px solid #dd2c00;
