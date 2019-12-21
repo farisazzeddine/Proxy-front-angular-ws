@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   }
   handleResponse(data){
-    console.log('this is my data', data);
+    
     localStorage.setItem('user_info',JSON.stringify(data))
     this.tokenService.handleToken(data.access_token);
     this.Auth.changeAuthStatus(true);

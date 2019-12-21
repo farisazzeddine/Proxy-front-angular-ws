@@ -35,10 +35,10 @@ constructor(
   private agenceService:AgenceService
   ) { }
 Newclient={
-    id:0, auth:this.user_info['userId'],
-    agence:'', nom:'', prenom:'', adresse:'', cin:'', codePostal:'',
-    ville:'', telephone:'', compteEpargne:false, compteCourant:false,
-    solde:'', cartebancaire:'', typeCarte:''
+    id:0, authId:this.user_info['userId'],
+    agence:'', nom:'',           prenom:'', adresse:'', cin:'', codePostal:'',
+    ville:'' , telephone:'',     compteEpargne:false,   compteCourant:false,
+    solde:'' , cartebancaire:'', typeCarte:''
 
   };
   
@@ -66,7 +66,7 @@ Newclient={
   // pour vider la formule*********************************************************************************
   resetForms(){
     this.Newclient={
-      id:0,auth:'',
+      id:0,authId:'',
       agence:'', nom:'', prenom:'', adresse:'', cin:'', codePostal:'',
       ville:'', telephone:'', compteEpargne:false, compteCourant:false,
       solde:'', cartebancaire:'', typeCarte:''

@@ -13,11 +13,10 @@ import {FormControl, Validators} from '@angular/forms';
 
 export class OperationsComponent implements OnInit {
  
-
-  headElements = [
+ public headElements = [
     "#","La date","Numéro de compte",
-  "Type Opération", "Montant d'opération",
-  "Nouveau Solde","Paramétre"
+    "Type Opération", "Montant d'opération",
+    "Nouveau Solde","Paramétre"
 ];
 
   operations: Operation[] = [];
@@ -35,37 +34,42 @@ export class OperationsComponent implements OnInit {
   public operation={
     versement:false, virement:false, retrait:false, montantOperation:null, numCompte_id:null, virementVersCompte:null,
     };
-  openSide(){
+    openSide(){
     this.isClosed=!this.isClosed;
     }
     openOperation(){
      this.tOperation=!this.tOperation;
     
    }
+   //*les liens des operations
     openViremet(){ 
       this.isVirement=!this.isVirement;
-      this.operation.virement=!this.isVirement;
+      this.operation.virement=this.isVirement;
       this.isVersement=false;
       this.isRetrait=false;
     }
     opentVersement(){
       this.isVersement=!this.isVersement;
-      this.operation.versement=!this.isVersement;
+      this.operation.versement=this.isVersement;
       this.isVirement=false;
       this.isRetrait=false;
     } 
     opentRetrait(){
       this.isRetrait=!this.isRetrait,
-      this.operation.retrait=!this.isRetrait
+      this.operation.retrait=this.isRetrait
       this.isVersement=false;
       this.isVirement=false;
     }
-  constructor(private operationService: OperationService) { }
+     //*la fin des liens des operations
+  constructor(
+    private operationService: OperationService
+    ) { }
 
   ngOnInit() {
     this.getOperation();
     
   }
+ //*********************affichage des operations */ 
 getOperation(){
   this.operationService.getAll().
   subscribe(operations =>{
@@ -73,24 +77,21 @@ getOperation(){
   // console.log(this.operations[0].opertaion_virement[0].virementVersCompte);
     // console.log(this.operations);
     })  
-
-   
-    
-  
 }
+//*********************creation des operations */
 CreateOperation(){
 this.operationService.create(this.operation).
  subscribe(response=>{
  this.operation={
-  versement:false, virement:false, 
-  retrait:false, montantOperation:null,
-   numCompte_id:null, virementVersCompte:null,
+  versement:false,   virement:false, 
+  retrait:false,     montantOperation:null,
+  numCompte_id:null, virementVersCompte:null,
   };
   this.getOperation();
-}
-)
+})
 
 }
+//*********************supression des operations */
 deleteOperation(Operation){
   this.operationService.delete(Operation).subscribe(()=>{
     let index = this.operations.indexOf(Operation);

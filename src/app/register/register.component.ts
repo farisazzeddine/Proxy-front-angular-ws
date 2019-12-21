@@ -4,6 +4,7 @@ import { TokenService } from '../service/token.service';
 import { Router } from '@angular/router';
 import { UserGerantService } from '../service/user-gerant.service';
 import { UserConseillerService } from '../service/user-conseiller.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -27,8 +28,9 @@ prenom:null, name:null, cin:null, password:null, c_password:null, email:null, is
 };
 public success =null;
 public error = [];
-
+public loggedIn:boolean;
   constructor( 
+    private Auth : AuthService,
     private userConseillerService : UserConseillerService,
     private userGerantService     : UserGerantService,
     private registerService       : RegisterService,
@@ -40,6 +42,9 @@ public error = [];
   ngOnInit() {
     this.getGerant();
     this.getAgent();
+    this.Auth.authStatus.subscribe(
+      value=>this.loggedIn=value
+      );
   }
   addUser(){
     this.isAdd=!this.isAdd

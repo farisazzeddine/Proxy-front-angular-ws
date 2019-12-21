@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   showFiller = false;
   public loggedIn:boolean;
+  protected user_info = JSON.parse(localStorage.getItem('user_info'));
   constructor(
     private Auth:AuthService,
     private tokenService: TokenService,

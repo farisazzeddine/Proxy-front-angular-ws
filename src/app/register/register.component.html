@@ -8,7 +8,7 @@
             <hr>
             <mat-list class="white-text text-center" role="list">
                     <mat-nav-list class="text-center"><a mat-list-item (click)="addUser()" class=" text-center">Ajouter des clients</a> </mat-nav-list>
-                    <mat-nav-list class="text-center"><a mat-list-item (click)="showAgent()" class=" text-center">les derniers clients</a> </mat-nav-list>       
+                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showAgent()" class=" text-center">les derniers clients</a> </mat-nav-list>       
             </mat-list>    
     </div>
 </mat-drawer>
@@ -21,7 +21,7 @@
    <hr> 
 </div>
 
-  <article class="container-fluid col-md-12 p-5">
+  <article  class="container-fluid col-md-12 p-5">
     <mdb-card *ngIf="isAdd">
       <div class="row">
 
@@ -114,6 +114,7 @@
       </div>
       <!-- Default form register -->
     </mdb-card>
+    <div *ngIf="loggedIn">
     <mdb-card class="mt-5" *ngIf="isAgent">
       <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
         <div class="text-center">
@@ -202,6 +203,7 @@
       </table> 
     </div>
   </mdb-card>
+  </div>
   </article>
 </div>  
 </mat-drawer-container>
