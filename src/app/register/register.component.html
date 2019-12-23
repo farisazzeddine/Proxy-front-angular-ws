@@ -3,12 +3,14 @@
    <mat-drawer #drawer class="example-sidenav mdb-color white-text text-center" mode="side">     
          <div class="container text-monospace white-text ml-.5 px-3 mt-2 mb-5" >
             <h2 width="150"><mdb-icon fas icon="address-card"></mdb-icon></h2>
-           <p><strong>Partie Adminstration</strong></p>
+           <p><strong>PORTAIL ADMINISTRATIF</strong></p>
            
             <hr>
             <mat-list class="white-text text-center" role="list">
                     <mat-nav-list class="text-center"><a mat-list-item (click)="addUser()" class=" text-center">Ajouter des clients</a> </mat-nav-list>
-                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showAgent()" class=" text-center">les derniers clients</a> </mat-nav-list>       
+                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showGerant()" class=" text-center">les Gérants</a> </mat-nav-list> 
+                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showAgent()" class=" text-center">les Agents</a> </mat-nav-list>       
+      
             </mat-list>    
     </div>
 </mat-drawer>
@@ -17,15 +19,15 @@
   <button mdbWavesEffect type="button" size="sm" color="indigo" mdbBtn >
       <mdb-icon fas icon="align-justify"></mdb-icon>
   </button>
-  <h1 class="text-uppercase font-weight-bold text-center"> portail client </h1>
+  <h1 class="text-uppercase font-weight-bold text-center"> PORTAIL ADMINISTRATIF </h1>
    <hr> 
 </div>
 
   <article  class="container-fluid col-md-12 p-5">
+    <!-- Default form register -->
     <mdb-card *ngIf="isAdd">
       <div class="row">
 
-        <!-- Default form register -->
         <div class="col-md-12">
           <form #registerForm=ngForm (submit)="onRegister()" class="text-center p-5">
             <div class="text-center ">
@@ -115,7 +117,8 @@
       <!-- Default form register -->
     </mdb-card>
     <div *ngIf="loggedIn">
-    <mdb-card class="mt-5" *ngIf="isAgent">
+      <!-- affichage des information pour les gerants -->
+    <mdb-card class="mt-5" *ngIf="isGerants">
       <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
         <div class="text-center">
           <h3 class=" text-monospace text-center text-capitalize mt-4 mb-2">
@@ -124,8 +127,19 @@
           <hr>
         </div>
       </mdb-card-header>
-    <div class="col-md-12 pt-3 table-responsive">
-      <table mdbTable class="text-monospace text-center text-capitalize mt-4">
+      <div class="text-right">
+        <a mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="addUser()" class="black-text" ><mdb-icon fas icon="plus"></mdb-icon>Ajouter</a>
+      </div>
+    <div class="col-md-12 table-responsive">
+      <table mdbTable class="text-monospace text-center text-capitalize mt-1">
+         <!-- row pour la recherche gerant  -->
+      <div class="row p-.5 mx-2">
+        <div class="col-md-8 md-form  text-monospace  text-capitalize">
+          <input mdbInput  type="text" name="searcheBar"  id="searcheBar" class="form-control">
+          <label for="searcheBar" class="text-monospace text-center text-lowercase">Entrez le CIN°.... <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon></label>
+          <p>CIN° Gerant (e) :  !</p>
+        </div> 
+         <!-- row pour la recherche gerant  --> 
         <thead class="indigo white-text">
            <tr>
                 <th *ngFor="let head of headElements" scope="col">{{head}}</th>
@@ -159,7 +173,8 @@
       </table> 
     </div>
   </mdb-card>
-  <mdb-card class="mt-5">
+ <!-- affichage des information pour les Agents -->
+  <mdb-card class="mt-5" *ngIf="isAgent">
     <mdb-card-header (click)="drawer.toggle()" class="unique-color white-text text-center py-1">
       <div class="text-center">
         <h3 class=" text-monospace text-center text-capitalize mt-4 mb-2">
@@ -168,8 +183,20 @@
         <hr>
       </div>
     </mdb-card-header>
-    <div class="col-md-12 pt-3 table-responsive">
-      <table mdbTable class="text-monospace text-center text-capitalize mt-4">
+    <div class="col-md-12  table-responsive">
+      <!-- row pour la recherche agent  -->
+      <div class="row p-.5 mx-2">
+      <div class="col-md-8 md-form  text-monospace  text-capitalize">
+        <input mdbInput  type="text" name="searcheBar"  id="searcheBar" class="form-control">
+        <label for="searcheBar" class="text-monospace text-center text-lowercase">Entrez le CIN°.... <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon></label>
+        <p>CIN° Agent (e) :  !</p>
+      </div> 
+       <!-- row pour la recherche agent  -->    
+      <div class="col-md-4 md-form text-right">
+      <a mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect (click)="addUser()" class="black-text" ><mdb-icon fas icon="plus"></mdb-icon>Ajouter</a>
+    </div>
+    </div>
+      <table mdbTable class="text-monospace text-center text-capitalize mt-1">
         <thead class="indigo white-text">
            <tr>
                 <th *ngFor="let head of headElements" scope="col">{{head}}</th>

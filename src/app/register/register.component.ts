@@ -47,10 +47,17 @@ public loggedIn:boolean;
       );
   }
   addUser(){
-    this.isAdd=!this.isAdd
+    this.isAdd=!this.isAdd;
+    this.isAgent=false;
+    this.isGerants=false;
   }
   showAgent(){
     this.isAgent=!this.isAgent;
+    this.isGerants=false;
+  }
+  showGerant(){
+    this.isGerants=!this.isGerants;
+    this.isAgent=false;
   }
 
   // ***********************************************
