@@ -43,6 +43,8 @@ import { AfterLoginService } from './service/after-login.service';
 import { BeforeLoginService } from './service/before-login.service';
 import { UserConseillerService } from './service/user-conseiller.service';
 import { UserGerantService } from './service/user-gerant.service';
+import { CountAgentService } from './service/count-agent.service';
+import { CountGerantService } from './service/count-gerant.service';
 
 
 
@@ -92,7 +94,9 @@ import { UserGerantService } from './service/user-gerant.service';
     AfterLoginService,
     BeforeLoginService,
     UserConseillerService,
-    UserGerantService
+    UserGerantService,
+    CountAgentService,
+    CountGerantService
     
   ],
   bootstrap: [AppComponent],

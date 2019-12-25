@@ -7,9 +7,9 @@
            
             <hr>
             <mat-list class="white-text text-center" role="list">
-                    <mat-nav-list class="text-center"><a mat-list-item (click)="addUser()" class=" text-center">Ajouter des clients</a> </mat-nav-list>
-                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showGerant()" class=" text-center">les Gérants</a> </mat-nav-list> 
-                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showAgent()" class=" text-center">les Agents</a> </mat-nav-list>       
+                    <mat-nav-list class="text-center"><a mat-list-item (click)="addUser()" class=" text-center"><i class="fas fa-external-link-alt px-3"></i> Ajouter des clients </a></mat-nav-list>
+            <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item (click)="showGerant()" class=" text-center"><span style="font-size: .7rem;" class="badge btn-light-blue mx-2 px-3 py-2">{{countGer}}</span> les Gérants </a>  </mat-nav-list> 
+                    <mat-nav-list *ngIf="loggedIn" class="text-center"><a mat-list-item  (click)="showAgent()" class=" text-center"><span style="font-size: .7rem;" class="badge btn-light-blue mx-2 px-3 py-2"> {{countAg}} </span> les Agents  </a>  </mat-nav-list>       
       
             </mat-list>    
     </div>
@@ -31,10 +31,12 @@
         <div class="col-md-12">
           <form #registerForm=ngForm (submit)="onRegister()" class="text-center p-5">
             <div class="text-center ">
-              <img src="../../favicon.ico" width="100" class="rounded-circle img-fluid">
+              <img src="../../assets/img/avatar.png" width="100" class="rounded-circle img-fluid">
               <p class="h4 mb-4">Créer employer</p>
             </div>
-
+            <div class="alert alert-danger" role="alert" [hidden]="!success">
+              {{success}}
+            </div>
             <div class="form-row mb-4">
               <!-- First name -->
               <div class="col">
@@ -57,17 +59,17 @@
             <!-- Password -->
             <div class="form-row mb-4">
               <div class="col">
-                <input [(ngModel)]="form.password" type="password" name="password" id="password" class="form-control"
-                  placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
-                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                <input [(ngModel)]="form.password" type="password" name="password" id="new-password" class="form-control"
+                  placeholder="Password" aria-describedby="new-password" required>
+                <small id="new-password" class="form-text text-muted mb-4">
                   At least 8 characters and 1 digit
                 </small>
               </div>
               <!--confiramtion Password -->
               <div class="col">
                 <input [(ngModel)]="form.c_password" name="c_password" type="password" id="c_password" class="form-control"
-                  placeholder="confirmer Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
-                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                  placeholder="confirmer Password" aria-describedby="c_password" required>
+                <small id="c_password" class="form-text text-muted mb-4">
                   At least 8 characters and 1 digit
                 </small>
               </div>
@@ -76,36 +78,27 @@
             <!-- E-mail -->
             <input name="email" [(ngModel)]="form.email" type="email"  id="email" class="form-control mb-4"
               placeholder="E-mail" required>
-              <!-- <div class="alert alert-danger" role="alert" [hidden]="!error.email" >
-                {{error.email}}
-              </div> -->
+               
 
             <!-- choix de conseiller au gerant -->
-            <div class="row">
-               <div class="col-md-6 mx-auto d-flex justify-content-center">
+               <div class="col-md-12">
                  <div class="form-check">
                   <mat-radio-group>
-                    <mat-radio-button (click)="form.is_conseiller = 1" [(ngModel)]="form.is_conseiller" name="is_conseiller" id="is_conseiller" class="mx-5 px-4" [value]="form.is_conseiller" >Compte Epargne</mat-radio-button>
-                    <mat-radio-button (click)="form.is_gerant = 1" [(ngModel)]="form.is_gerant" name="is_gerant" id="is_gerant"  class="mx-5 px-4" [value]="form.is_gerant" >Compte Courant</mat-radio-button>
+                    <mat-radio-button class="col-md-6 offset-md-3" (click)="chooseConseiller()" [(ngModel)]="form.is_conseiller" name="is_conseiller" id="is_conseiller" class="mx-5 px-4"  value="after" >Employer Agent</mat-radio-button>
+                    <mat-radio-button class="col-md-6 offset-md-3" (click)="chooseGerant()" [(ngModel)]="form.is_gerant" name="is_gerant" id="is_gerant"  class="mx-5 px-4" value="befor">Employer Gerant</mat-radio-button>
                   </mat-radio-group>
                 </div>
               </div>
-              <!-- <input [(ngModel)]="form.is_gerant" type="radio" name="is_gerant" class="form-check-input"
-                id="gerant" name="gerant" value="1" mdbInput >
-              <label class="form-check-label" for="gerant">Je suis un(e) Gerant (e)</label>
-              <div class="col-md-6 mx-auto d-flex justify-content-center">
-                <div class="form-check">
-                  <input [(ngModel)]="form.is_conseiller" type="radio" name="is_conseiller" class="form-check-input"
-                    id="conseiller" name="conseiller" value="1" mdbInput >
-                  <label class="form-check-label" for="conseiller">Je suis un(e) Agent (e)</label>
-                </div>
-              </div>  -->
-            </div>
+             
+            
             <!-- Sign up button -->
             <button mdbBtn color="dark" block="true" class="my-4" [disabled]="!registerForm.valid"
               type="submit">Inscription</button>
               {{ form | json}}
             <hr>
+            <div class="alert alert-danger" role="alert" [hidden]="!error">
+              {{error}}
+            </div> 
             <!-- Terms of service -->
             <p>En cliquant
               <em>sur Inscription</em>, vous acceptez nos
@@ -127,25 +120,27 @@
           <hr>
         </div>
       </mdb-card-header>
-      <div class="text-right">
-        <a mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="addUser()" class="black-text" ><mdb-icon fas icon="plus"></mdb-icon>Ajouter</a>
-      </div>
+     
     <div class="col-md-12 table-responsive">
-      <table mdbTable class="text-monospace text-center text-capitalize mt-1">
-         <!-- row pour la recherche gerant  -->
-      <div class="row p-.5 mx-2">
+      <div class="row  mx-2">
         <div class="col-md-8 md-form  text-monospace  text-capitalize">
-          <input mdbInput  type="text" name="searcheBar"  id="searcheBar" class="form-control">
-          <label for="searcheBar" class="text-monospace text-center text-lowercase">Entrez le CIN°.... <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon></label>
-          <p>CIN° Gerant (e) :  !</p>
+          <input mdbInput (keyup)="searchUserGerant()" [(ngModel)]="searchGerant" type="text" name="searchGerant"  id="searchGerant" class="form-control">
+          <label for="searchGerant" class="text-monospace text-center text-lowercase">Entrez le CIN°.... <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon></label>
+          <p>CIN° Gerant (e) : {{searchGerant}} !</p>
         </div> 
-         <!-- row pour la recherche gerant  --> 
+         <!-- row pour la recherche gerant  -->       
+         <div class="col-md-4 md-form text-right">
+            <a mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect (click)="addUser()" class="black-text" ><mdb-icon fas icon="plus"></mdb-icon>Ajouter</a>
+        </div>
+      </div>
+      <table mdbTable class="text-monospace text-center text-capitalize">
+         <!-- row pour la recherche gerant  -->
         <thead class="indigo white-text">
            <tr>
                 <th *ngFor="let head of headElements" scope="col">{{head}}</th>
            </tr>
         </thead>
-        <tbody *ngFor="let gerant of gerants">
+        <tbody *ngFor="let gerant of serUserGerant">
                 <tr mdbTableCol>
                     <th scope="row">{{gerant.id}}</th>                   
                     <td>
@@ -187,9 +182,9 @@
       <!-- row pour la recherche agent  -->
       <div class="row p-.5 mx-2">
       <div class="col-md-8 md-form  text-monospace  text-capitalize">
-        <input mdbInput  type="text" name="searcheBar"  id="searcheBar" class="form-control">
+        <input mdbInput  type="text" (keyup)="searchUserAgent()" [(ngModel)]="searchAgent" name="searcheBar"  id="searcheBar" class="form-control">
         <label for="searcheBar" class="text-monospace text-center text-lowercase">Entrez le CIN°.... <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon></label>
-        <p>CIN° Agent (e) :  !</p>
+        <p>CIN° Agent (e) : {{searchAgent}} !</p>
       </div> 
        <!-- row pour la recherche agent  -->    
       <div class="col-md-4 md-form text-right">
@@ -202,7 +197,7 @@
                 <th *ngFor="let head of headElements" scope="col">{{head}}</th>
            </tr>
         </thead>
-         <tbody *ngFor="let agent of agents">
+         <tbody *ngFor="let agent of serUserAgent">
                 <tr mdbTableCol>
                     <th scope="row">{{agent.id}}</th>                   
                     <td>

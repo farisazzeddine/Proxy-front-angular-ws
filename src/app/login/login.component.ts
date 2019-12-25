@@ -32,9 +32,7 @@ export class LoginComponent implements OnInit {
     this.loginService.create(this.form)
     .subscribe(
      data => this.handleResponse(data),
-     
-     
-     error=>  this.handleError(error)
+     error=> this.handleError(error)
      
     );
 

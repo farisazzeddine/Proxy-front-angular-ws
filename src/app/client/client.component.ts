@@ -115,12 +115,13 @@ Newclient={
     })
 
   }
+  //partie crud finis
 
   searcheClient(){
     this.serClient = this.clients.filter(
       (client)=> client.cin.toLowerCase().
-      includes(this.searchText.toLowerCase()))
+      includes(this.searchText.toLowerCase())
+      )
 
   }
-  //partie crud finis
 }
